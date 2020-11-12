@@ -1,7 +1,6 @@
 <?php
 
-function parseUrl($url = "")
-{
+function parseUrl($url = ""){
     return explode('/', filter_var(rtrim($url, '/'), FILTER_SANITIZE_URL));
 }
 
@@ -26,4 +25,12 @@ function parsePath($url = [])
         "file" => $file,
         "subpage" => $subpage
     ];
+}
+
+function title($dir = "")
+{
+    $title = "Bottle Caps Collection";
+    if($dir != "" && $dir != "home") $title = ucfirst($dir) . " | " . $title;
+
+    return $title;
 }
