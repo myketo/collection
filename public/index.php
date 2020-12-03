@@ -1,5 +1,4 @@
 <?php
-
 require_once '../app/includes/functions.php';
 require_once "../app/includes/connect.php";
 
@@ -9,6 +8,7 @@ $path = parsePath($url);
 
 $page = $path['path'] . "/" . $path['dir'] . "/" . $path['file'];
 $subpage = $path['path'] . "/" . $path['dir'] . "/" . $path['subpage'];
+
 $title = title($path['dir']);
 
 include "../app/pages/header.php";

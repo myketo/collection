@@ -1,4 +1,4 @@
-<main role="main">
+<div class="home-page">
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-3">Welcome!</h1>
@@ -204,4 +204,4 @@
             </div>
         </div>
     </div>
-</main>
+</div>

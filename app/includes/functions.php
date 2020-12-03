@@ -6,20 +6,22 @@ function parseUrl($url = ""){
 
 function parsePath($url = [])
 {
-    $path = "pages/";       // default path
+    $base = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/";
+    $path = "pages";       // default path
     $dir = "home";          // default directory
     $file = "index.php";    // default file
     $subpage = "";          // default subpage
 
-    if(isset($url[0]) && file_exists("$path/{$url[0]}/$file")){
-        $dir = "{$url[0]}";
+    if(isset($url[0]) && file_exists(__DIR__  . "/../$path/{$url[0]}/$file")){
+        $dir = $url[0];
     }
 
-    if(isset($url[1]) && file_exists("$dir/{$url[1]}.php")){
+    if(isset($url[1]) && file_exists(__DIR__ . "/../$path/$dir/{$url[1]}.php")){
         $subpage = "{$url[1]}.php";
     }
 
     return [
+        "base" => $base,
         "path" => $path,
         "dir" => $dir,
         "file" => $file,
