@@ -63,7 +63,7 @@
     <div class="card">
         <div class="row no-gutters d-flex flex-column align-items-center align-items-md-left flex-md-row">
             <div class="col-auto m-1 pt-3">
-                <img src="//placehold.it/240x200" class="img-thumbnail" alt="">
+                <img src="//placehold.it/240x200" class="img-thumbnail" alt="" data-toggle='modal' data-target='#cap1' style='cursor: pointer;'>
             </div>
             <div class="col">
                 <div class="card-body">
@@ -94,6 +94,22 @@
         <!-- <div class="card-footer w-100 text-muted">
             Footer stating cats are CUTE little animals
         </div> -->
+    </div>
+
+    <div class='modal fade' id='cap1' tabindex='-1' role='dialog' aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class='modal-dialog modal-lg' role='document'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h5 class='modal-title'>Marka</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class='modal-body p-0 d-flex justify-content-center'>
+                    <img src='//placehold.it/1000x1000' class='img-fluid rounded-bottom'>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- <div class="card">
