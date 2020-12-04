@@ -31,7 +31,10 @@ function parsePath($url = [])
 
 function title($dir = "")
 {
+    $dir = str_replace(".php", "", $dir);
+
     $title = "Bottle Caps Collection";
+
     if($dir != "" && $dir != "home") $title = ucfirst($dir) . " | " . $title;
 
     return $title;

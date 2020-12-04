@@ -7,10 +7,10 @@ $url = parseUrl($get_url);
 $path = parsePath($url);
 
 $page = $path['path'] . "/" . $path['dir'] . "/" . $path['file'];
-$subpage = $path['path'] . "/" . $path['dir'] . "/" . $path['subpage'];
+$subpage = !empty($path['subpage']) ? $path['path'] . "/" . $path['dir'] . "/" . $path['subpage'] : "";
 
-$title = title($path['dir']);
+$title = $subpage ? title($path['subpage']) : title($path['dir']);
 
 include "../app/pages/header.php";
-require_once "../app/$page";
+require_once $subpage ? "../app/$subpage" : "../app/$page";
 include "../app/pages/footer.php";

@@ -27,7 +27,7 @@
                         <a class="nav-link" href="collection">Collection</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Unknown</a>
+                        <a class="nav-link" href="collection/unknown">Unknown</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Countries</a>
