@@ -30,7 +30,7 @@
                         <a class="nav-link" href="collection/unknown">Unknown</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Countries</a>
+                        <a class="nav-link" href="countries">Countries</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

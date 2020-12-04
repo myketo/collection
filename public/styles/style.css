@@ -18,8 +18,16 @@ body {
   user-select: none;
 }
 
+.country-flag{
+  height: 25px;
+}
+
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
+  }
+
+  .country-flag{
+    height: 30px;
   }
 }
