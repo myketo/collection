@@ -20,29 +20,30 @@
 
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item" id="home">
-                        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="collection">Collection</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="collection/unknown">Unknown</a>
+                        <div class="btn-group">
+                            <a href='collection' class='nav-link'>Collection</a>
+                            <a href='#' class="nav-link dropdown-toggle dropdown-toggle-split ml-2 pl-lg-0 ml-lg-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="collection/unknown">Unknown</a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="countries">Countries</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li> -->
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                    <li class='nav-item'>
+                        <div class="btn-group">
+                            <a href='admin' class='nav-link'>Admin</a>
+                            <a href='#' class="nav-link dropdown-toggle dropdown-toggle-split ml-2 pl-lg-0 ml-lg-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="admin/add">Add new</a>
+                                <a class="dropdown-item" href="admin/activity">Activity</a>
+                            </div>
                         </div>
-                    </li> -->
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <select class="form-control mr-sm-2 mb-2 mb-md-0">
