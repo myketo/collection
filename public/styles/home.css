@@ -1,0 +1,11 @@
+.recent-text{
+    white-space: nowrap; 
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.recent-text::before, 
+.recent-text::after{
+    content: "'";
+}

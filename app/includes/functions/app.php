@@ -11,12 +11,11 @@ function parsePath($url = [])
     $dir = "home";          // default directory
     $file = "index.php";    // default file
     $subpage = "";          // default subpage
-
-    if(isset($url[0]) && file_exists(__DIR__  . "/../$path/{$url[0]}/$file")){
+    if(isset($url[0]) && file_exists(__DIR__  . "/../../$path/{$url[0]}/$file")){
         $dir = $url[0];
     }
 
-    if(isset($url[1]) && file_exists(__DIR__ . "/../$path/$dir/{$url[1]}.php")){
+    if(isset($url[1]) && file_exists(__DIR__ . "/../../$path/$dir/{$url[1]}.php")){
         $subpage = "{$url[1]}.php";
     }
 

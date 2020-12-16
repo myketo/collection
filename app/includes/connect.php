@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$database = "kapsle";
+$database = "bottle-caps";
 
 $conn = mysqli_connect($host, $user, $password, $database);
 
