@@ -1,6 +1,6 @@
 <?php
-require_once '../app/includes/functions/app.php';
 require_once "../app/includes/connect.php";
+require_once '../app/includes/functions/app.php';
 
 $get_url = isset($_GET['url']) ? $_GET['url'] : "";
 $url = parseUrl($get_url);

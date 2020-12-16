@@ -1,0 +1,21 @@
+.img-thumbnail{
+    width: 240px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.cap-text{
+    white-space: nowrap; 
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cap-text::before, 
+.cap-text::after{
+    content: "'";
+}
+
+/* .modal{
+    center vertically
+} */

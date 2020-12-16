@@ -38,3 +38,11 @@ function title($dir = "")
 
     return $title;
 }
+
+function getDateFromDatetime($datetime)
+{
+    $dt = new DateTime($datetime);
+    $created_date = $dt->format('Y-m-d');
+    
+    return $created_date;
+}
