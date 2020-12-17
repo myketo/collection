@@ -46,3 +46,10 @@ function getDateFromDatetime($datetime)
     
     return $created_date;
 }
+
+function headerLocation($location)
+{
+    header("Location: " . $location);
+    die();
+    exit;
+}

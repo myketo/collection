@@ -10,12 +10,6 @@
             </div>
         </footer>
         
-        <script src='scripts/active.js'></script>
-        <script>
-            $("#scroll-btn").on('click', function(e){
-                e.preventDefault();
-                $('html, body').animate({scrollTop: 0}, 300);
-            });
-        </script>
+        <script src='scripts/navigation.js'></script>
     </body>
 </html>

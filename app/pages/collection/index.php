@@ -1,8 +1,21 @@
-<?php include "../app/includes/queries/collection.php"; ?>
+<?php
+include "../app/includes/queries/collection.php";
+include "../app/includes/functions/pagination.php";
+
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+
+$limit = 10;
+$offset = ($page * $limit) - $limit;
+
+$caps_count = getAllAmount();
+$page_count = ceil($caps_count / $limit);
+
+if($page < 1 || $page > $page_count) headerLocation("collection");
+?>
 
 <link rel='stylesheet' href='styles/collection.css'></link>
 <div class="collection-page d-flex flex-column">
-    <h1 class='display-1 text-center'><?=getAllAmount();?></h1>
+    <h1 class='display-1 text-center caps-count'><?=$caps_count?></h1>
 
     <div class='col d-flex justify-content-end mr-1'>
         <a class='btn btn-primary w-25 col-lg-2' data-toggle='collapse' href='#sortForm' role='button' aria-expanded="false" aria-controls="collapseExample">Sorting</a>
@@ -42,15 +55,16 @@
     </div>
 
     <?php
+        $pagination = paginationLinks($page, $page_count);
+
         include "pagination.php";
         
-        $limit = 10;
-        $offset = 0;
         $items = getItems($limit, $offset);
         foreach($items as $item) showItem($item, true);
 
         include "pagination.php";
     ?>
 
+    <script src='scripts/pagination.js'></script>
     <script src='scripts/show_details.js'></script>
 </div>
