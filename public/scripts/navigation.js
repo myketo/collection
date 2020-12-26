@@ -1,5 +1,7 @@
 $(function() {
     var url = window.location.href;
+    url = url.split("?")[0];
+    
     $('.nav-item a').filter(function() {
         return this.href == url;
     }).parent().addClass('active');

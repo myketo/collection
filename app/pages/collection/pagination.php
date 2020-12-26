@@ -12,17 +12,17 @@
 
         <li class="page-item page-nr">
             <a class="page-link" href="<?=$pagination['first']?>">
-                <?=$page == 1 ? 1 : ($page == $page_count ? ($page_count - 2) : ($page-1))?>
+                <?=$page['nr'] == 1 ? 1 : ($page['nr'] == $page['count'] ? ($page['count'] - 2) : ($page['nr'] - 1))?>
             </a>
         </li>
         <li class="page-item page-nr">
             <a class="page-link" href="<?=$pagination['second']?>">
-                <?=$page == 1 ? 2 : ($page == $page_count ? ($page_count - 1) : $page)?>
+                <?=$page['nr'] == 1 ? 2 : ($page['nr'] == $page['count'] ? ($page['count'] - 1) : $page['nr'])?>
             </a>
         </li>
         <li class="page-item page-nr">
             <a class="page-link" href="<?=$pagination['third']?>">
-                <?=$page == 1 ? 3 : ($page == $page_count ? $page_count : ($page+1))?>
+                <?=$page['nr']== 1 ? 3 : ($page['nr'] == $page['count'] ? $page['count'] : ($page['nr'] + 1))?>
             </a>
         </li>
 

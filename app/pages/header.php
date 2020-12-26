@@ -45,15 +45,15 @@
                         </div>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <select class="form-control mr-sm-2 mb-2 mb-md-0">
+                <form method='GET' class="form-inline my-2 my-lg-0">
+                    <!-- <select class="form-control mr-sm-2 mb-2 mb-md-0">
                         <option >All</option>
                         <option>Brand</option>
                         <option>Text</option>
                         <option>Colors</option>
                         <option>Country</option>
-                    </select>
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    </select> -->
+                    <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
