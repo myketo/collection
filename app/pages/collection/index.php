@@ -21,13 +21,13 @@ $url = filterUrlData($_GET);
         $pagination = paginationLinks($page['nr'], $page['count'], $url['nopagepath']);
 
         include "pagination.php";
-        
-        $items = getItems($page['limit'], $page['offset']);
-        foreach($items as $item) echo showItem($item, true);
+        $items = getItems($url['sort_by'], $url['order_by'], $page['limit'], $page['offset']);
+        foreach($items as $item) showItem($item, true);
 
         include "pagination.php";
     ?>
 
+    <script src='scripts/sorting.js'></script>
     <script src='scripts/pagination.js'></script>
     <script src='scripts/show_details.js'></script>
 </div>

@@ -53,7 +53,7 @@
                         <option>Colors</option>
                         <option>Country</option>
                     </select> -->
-                    <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" value="<?=getQueryValue('search');?>">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>

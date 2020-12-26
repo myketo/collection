@@ -11,6 +11,7 @@ function parsePath($url = [])
     $dir = "home";          // default directory
     $file = "index.php";    // default file
     $subpage = "";          // default subpage
+
     if(isset($url[0]) && file_exists(__DIR__  . "/../../$path/{$url[0]}/$file")){
         $dir = $url[0];
     }
@@ -52,4 +53,9 @@ function headerLocation($location)
     header("Location: " . $location);
     die();
     exit;
+}
+
+function getQueryValue($variable)
+{
+    return filter_input(INPUT_GET, $variable, FILTER_SANITIZE_STRING);
 }

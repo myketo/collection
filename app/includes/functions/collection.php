@@ -37,14 +37,14 @@ function pageInfo($caps_count, $limit = 10)
 function filterUrlData($url = [])
 {
     // valid values for sort_by and order_by
-    $valid_sort = ["date", "brand", "text", "colors", "country"];
+    $valid_sort = ["brand", "text", "color", "country"];
     $valid_order = ["asc", "desc"];
 
     // setting default values
     $path = "";
     $data = [
         'search' => '',
-        'sort_by' => 'date',
+        'sort_by' => 'id',
         'order_by' => 'desc',
         'page' => 1
     ];
@@ -65,7 +65,7 @@ function filterUrlData($url = [])
         $path .= isset($url['search']) ? "&" : "";
         $path .= "sort_by={$url['sort_by']}&order_by={$url['order_by']}";
 
-        $data['sort_by'] = in_array($url['sort_by'], $valid_sort) ? $url['sort_by'] : "date";
+        $data['sort_by'] = in_array($url['sort_by'], $valid_sort) ? $url['sort_by'] : "id";
         $data['order_by'] = in_array($url['order_by'], $valid_order) ? $url['order_by'] : "desc";
     }
 
@@ -151,7 +151,9 @@ function paginationLinks($page = 1, $page_count, $query = "")
  */
 function showItem($item = [], $admin = false)
 {
-    return
+    if(empty($item['brand'])) $item['brand'] = "&nbsp;";
+    
+    echo
     "<div class='card'>
         <div class='row no-gutters d-flex flex-column align-items-center align-items-md-left flex-md-row'>
             <div class='col-auto m-1 pt-3'>
@@ -161,11 +163,11 @@ function showItem($item = [], $admin = false)
                 <div class='card-body'>
                     <div>
                         <h5 class='card-header'>",$item['brand']," 
-                            <a class='small collapsed float-right d-inline d-md-none' data-toggle='collapse' href='#details1' role='button' aria-expanded='false' aria-controls='Details'>Details &dArr;</a>
+                            <a class='small collapsed float-right d-inline d-md-none' data-toggle='collapse' href='#details",$item['id'],"' role='button' aria-expanded='false' aria-controls='Details'>Details &dArr;</a>
                         </h5>
                     </div>
 
-                    <div class='d-md-block collapse' id='details1'>
+                    <div class='d-md-block collapse' id='details",$item['id'],"'>
                         <ul class='list-group list-group-flush'>
                             <li class='list-group-item cap-text' title='",$item['text'],"'>",$item['text'],"</li>
                             <li class='list-group-item'>",$item['color'],"</li>
@@ -186,7 +188,7 @@ function showItem($item = [], $admin = false)
     </div>
 
     <div class='modal fade' id='cap",$item['id'],"' tabindex='-1' role='dialog'>
-        <div class='modal-dialog modal-lg' role='document'>
+        <div class='modal-dialog modal-dialog-centered modal-lg' role='document'>
             <div class='modal-content'>
                 <div class='modal-header'>
                     <h5 class='modal-title'>",$item['brand'],"</h5>
