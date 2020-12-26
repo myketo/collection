@@ -7,6 +7,10 @@ body {
   padding-top: 3.5rem;
 }
 
+main{
+  min-height: 84vh;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -28,6 +32,10 @@ body {
 }
 
 @media (min-width: 768px) {
+  main{
+    min-height: 87vh;
+  }
+
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }

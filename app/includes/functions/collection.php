@@ -88,11 +88,11 @@ function filterUrlData($url = [])
 }
 
 /**
- * Set all links for pagination buttons
+ * Set links for all pagination buttons
  * @param int $page current page number
  * @param int $page_count amount of pages based on limit per page
  * @param string current url without page number
- * @return array returns array with links for every pagination button
+ * @return array returns an array with links for every pagination button
  */
 function paginationLinks($page = 1, $page_count, $query = "")
 {
@@ -144,6 +144,35 @@ function paginationLinks($page = 1, $page_count, $query = "")
 }
 
 /**
+ * Set values to display for  first, second and third center pagination buttons
+ * @param int $page current page number
+ * @param int $page_count amount of pages based on limit per page
+ * @return array returns an array with values to display for three pagination buttons
+ */
+function paginationNames($page = 1, $page_count)
+{
+    if($page < 3){
+        return [
+            'first' => 1,
+            'second' => 2,
+            'third' => 3
+        ];
+    }elseif($page == $page_count){
+        return [
+            'first' => ($page_count - 2),
+            'second' => ($page_count - 1),
+            'third' => $page_count
+        ];
+    }else{
+        return [
+            'first' => ($page - 1),
+            'second' => $page,
+            'third' => ($page + 1)
+        ];
+    }
+}
+
+/**
  * Get information about a database item wrapped in html
  * @param array $item array with data about a single item
  * @param bool $admin if user is an admin then display more data
@@ -167,7 +196,7 @@ function showItem($item = [], $admin = false)
                         </h5>
                     </div>
 
-                    <div class='d-md-block collapse' id='details",$item['id'],"'>
+                    <div class='d-md-block collapse item-details' id='details",$item['id'],"'>
                         <ul class='list-group list-group-flush'>
                             <li class='list-group-item cap-text' title='",$item['text'],"'>",$item['text'],"</li>
                             <li class='list-group-item'>",$item['color'],"</li>
@@ -203,3 +232,4 @@ function showItem($item = [], $admin = false)
         </div>
     </div>";
 }
+

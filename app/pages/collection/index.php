@@ -2,9 +2,16 @@
 include "../app/includes/functions/collection.php";
 include "../app/includes/queries/collection.php";
 
-$caps_count = countAllRows();
-if(!$page = pageInfo($caps_count)) headerLocation("collection");
 $url = filterUrlData($_GET);
+$caps_count = countAllRows($url['search']);
+
+if(!$caps_count){
+    echo "<p class='alert-danger'>Sorry, no results found for '{$url['search']}'.</p>";
+    include "../app/pages/footer.php";
+    die();
+}
+
+if(!$page = pageInfo($caps_count)) headerLocation("collection");
 ?>
 
 <link rel='stylesheet' href='styles/collection.css'></link>
@@ -18,13 +25,16 @@ $url = filterUrlData($_GET);
     <?php
         include "sorting.php";
 
-        $pagination = paginationLinks($page['nr'], $page['count'], $url['nopagepath']);
+        if($page['count'] > 1){
+            $pagination = paginationLinks($page['nr'], $page['count'], $url['nopagepath']);
+            $page_name = paginationNames($page['nr'], $page['count']);
+            include "pagination.php";
+        }
 
-        include "pagination.php";
-        $items = getItems($url['sort_by'], $url['order_by'], $page['limit'], $page['offset']);
+        $items = getItems($url['sort_by'], $url['order_by'], $page['limit'], $page['offset'], $url['search']);
         foreach($items as $item) showItem($item, true);
 
-        include "pagination.php";
+        if($page['count'] > 1) include "pagination.php";
     ?>
 
     <script src='scripts/sorting.js'></script>

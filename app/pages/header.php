@@ -45,12 +45,12 @@
                         </div>
                     </li>
                 </ul>
-                <form method='GET' class="form-inline my-2 my-lg-0">
+                <form method='GET' action='collection' class="form-inline my-2 my-lg-0">
                     <!-- <select class="form-control mr-sm-2 mb-2 mb-md-0">
-                        <option >All</option>
+                        <option>All</option>
                         <option>Brand</option>
                         <option>Text</option>
-                        <option>Colors</option>
+                        <option>Color</option>
                         <option>Country</option>
                     </select> -->
                     <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" value="<?=getQueryValue('search');?>">
