@@ -25,6 +25,7 @@ main{
   height: 200px;
   line-height: 200px;
   user-select: none;
+  cursor: default;
 }
 
 .country-flag{

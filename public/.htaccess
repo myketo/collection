@@ -2,6 +2,10 @@ Options -MultiViews
 RewriteEngine On
 RewriteBase /bottle-caps-collection/public/
 
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^collection/unknown index.php?url=collection&unknown [L,QSA]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)$ index.php?url=$1 [L,QSA]

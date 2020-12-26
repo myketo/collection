@@ -1,6 +1,6 @@
 <?php
 
-function countAllRows($search = "")
+function countAllRows($search = "", $unknown = false)
 {
     global $conn;
 
@@ -18,6 +18,8 @@ function countAllRows($search = "")
         }
     }
 
+    if($unknown) $query .= " WHERE `unknown` = 1;";
+
     $result = mysqli_query($conn, $query);
 
     $data = mysqli_fetch_array($result);
@@ -25,7 +27,7 @@ function countAllRows($search = "")
     return $data['amount'];
 }
 
-function getItems($sort_by, $order_by, $limit, $offset, $search = "")
+function getItems($sort_by, $order_by, $limit, $offset, $search = "", $unknown = false)
 {
     global $conn;
 
@@ -42,6 +44,8 @@ function getItems($sort_by, $order_by, $limit, $offset, $search = "")
             $i++;
         }
     }
+
+    if($unknown) $query .= " WHERE `unknown` = 1";
 
     $query .= " ORDER BY `$sort_by` $order_by LIMIT $limit OFFSET $offset;";
     $result = mysqli_query($conn, $query);

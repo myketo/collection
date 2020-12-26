@@ -22,7 +22,7 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <div class="btn-group">
-                            <a href='collection' class='nav-link'>Collection</a>
+                            <a href='collection' class='nav-link' id='nav-collection'>Collection</a>
                             <a href='#' class="nav-link dropdown-toggle dropdown-toggle-split ml-2 pl-lg-0 ml-lg-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             </a>
                             <div class="dropdown-menu">
@@ -31,11 +31,11 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="countries">Countries</a>
+                        <a href="countries" class="nav-link" id='nav-countries'>Countries</a>
                     </li>
                     <li class='nav-item'>
                         <div class="btn-group">
-                            <a href='admin' class='nav-link'>Admin</a>
+                            <a href='admin' class='nav-link' id='nav-admin'>Admin</a>
                             <a href='#' class="nav-link dropdown-toggle dropdown-toggle-split ml-2 pl-lg-0 ml-lg-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             </a>
                             <div class="dropdown-menu">

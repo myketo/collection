@@ -27,12 +27,12 @@
             <label class='col-sm-0 col-form-label col-form-label-sm'>Order by: </label>
             <div class='form-group col-sm-0'>
                 <div class="custom-control custom-radio">
-                    <input type='radio' id='desc' name='order_by' value='desc' class='custom-control-input' <?=queryExists('order_by', 'desc', 'checked')?>>
-                    <label class='custom-control-label order-by-desc' for='desc'>Newest</label>
-                </div>
-                <div class="custom-control custom-radio">
                     <input type='radio' id='asc' name='order_by' value='asc' class='custom-control-input' <?=queryExists('order_by', 'asc', 'checked')?>>
                     <label class='custom-control-label order-by-asc' for='asc'>Oldest</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type='radio' id='desc' name='order_by' value='desc' class='custom-control-input' <?=queryExists('order_by', 'desc', 'checked')?>>
+                    <label class='custom-control-label order-by-desc' for='desc'>Newest</label>
                 </div>
             </div>
         </div>

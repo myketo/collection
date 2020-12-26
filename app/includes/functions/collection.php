@@ -70,7 +70,7 @@ function filterUrlData($url = [])
     }
 
     // path without page data
-    $data['nopagepath'] = count($url) > 1 ? "?$path" : "";
+    $data['nopagepath'] = count($url) > 1 ? $path : "";
 
     // check page query
     if(isset($url['page'])){
@@ -180,19 +180,22 @@ function paginationNames($page = 1, $page_count)
  */
 function showItem($item = [], $admin = false)
 {
-    if(empty($item['brand'])) $item['brand'] = "&nbsp;";
+    // send message with cap id in title
+    if($item['unknown']) $item['unknown'] = "Do you know this cap? <a href='#' class='badge badge-primary'>Help me out.</a>";
     
     echo
     "<div class='card'>
         <div class='row no-gutters d-flex flex-column align-items-center align-items-md-left flex-md-row'>
-            <div class='col-auto m-1 pt-3'>
-                <img src='media/caps/",$item['image'],"' class='img-thumbnail' alt='",$item['brand'],"' data-toggle='modal' data-target='#cap",$item['id'],"'>
-            </div>
+            <div class='col-auto m-1 pt-3'>", 
+            file_exists("media/caps/{$item['image']}") 
+                ? "<img src='media/caps/{$item['image']}' class='img-thumbnail' data-toggle='modal' data-target='#cap{$item['id']}'>" 
+                : "<div class='img-thumbnail text-center no-image' style='cursor: default;'>no image</div>" 
+            ,"</div>
             <div class='col'>
                 <div class='card-body'>
                     <div>
-                        <h5 class='card-header'>",$item['brand']," 
-                            <a class='small collapsed float-right d-inline d-md-none' data-toggle='collapse' href='#details",$item['id'],"' role='button' aria-expanded='false' aria-controls='Details'>Details &dArr;</a>
+                        <h5 class='card-header'>",$item['unknown'] ? $item['unknown'] : $item['brand']," 
+                            <a class='details_link small collapsed float-right d-inline d-md-none' data-toggle='collapse' href='#details",$item['id'],"' role='button' aria-expanded='false' aria-controls='Details'>Details &dArr;</a>
                         </h5>
                     </div>
 

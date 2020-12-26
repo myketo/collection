@@ -5,8 +5,8 @@ function orderBy()
         $(".order-by-desc").html("Newest");
         $(".order-by-asc").html("Oldest");
     }else{
-        $(".order-by-desc").html("A-Z");
-        $(".order-by-asc").html("Z-A");
+        $(".order-by-desc").html("Z-A");
+        $(".order-by-asc").html("A-Z");
     }
 }
 
