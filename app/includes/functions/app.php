@@ -59,3 +59,10 @@ function getQueryValue($variable)
 {
     return filter_input(INPUT_GET, $variable, FILTER_SANITIZE_STRING);
 }
+
+function queryExists($name, $value, $return)
+{
+    if(isset($_GET[$name]) && ($_GET[$name] == $value)){
+        return $return;
+    }
+}

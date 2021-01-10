@@ -43,14 +43,23 @@ function filterUrlData($url = [])
     // setting default values
     $path = "";
     $data = [
+        'country' => '',
         'search' => '',
         'sort_by' => 'id',
         'order_by' => 'desc',
         'page' => 1
     ];
 
-    // checking search query
-    if(isset($url['search'])){
+    // check country query (if search isn't set)
+    if(isset($url['country']) && !isset($url['search'])){
+        $url['country'] = filter_input(INPUT_GET, 'country', FILTER_SANITIZE_STRING);
+        if(empty($url['country'])) headerLocation('colleciton');
+        $path .= "country={$url['country']}";
+        $data['country'] = $url['country'];
+    }
+
+    // check search query (if country isn't set)
+    if(isset($url['search']) && !isset($url['country'])){
         $url['search'] = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
         if(empty($url['search'])) headerLocation("collection");
         $path .= "search={$url['search']}";
@@ -62,7 +71,7 @@ function filterUrlData($url = [])
         $url['sort_by'] = filter_input(INPUT_GET, 'sort_by', FILTER_SANITIZE_STRING);
         $url['order_by'] = filter_input(INPUT_GET, 'order_by', FILTER_SANITIZE_STRING);
 
-        $path .= isset($url['search']) ? "&" : "";
+        $path .= (isset($url['country']) || isset($url['search'])) ? "&" : "";
         $path .= "sort_by={$url['sort_by']}&order_by={$url['order_by']}";
 
         $data['sort_by'] = in_array($url['sort_by'], $valid_sort) ? $url['sort_by'] : "id";
@@ -70,18 +79,17 @@ function filterUrlData($url = [])
     }
 
     // path without page data
-    $data['nopagepath'] = count($url) > 1 ? $path : "";
+    $data['nopagepath'] = count($url) > 1 ? "?$path" : "";
 
     // check page query
     if(isset($url['page'])){
         if(count($url) == 2) $data['nopagepath'] = "";
 
-        $path .= isset($url['search']) || isset($url['sort_by']) ? "&" : "";
+        $path .= count($url) > 1 ? "&" : "";
         $path .= "page={$url['page']}";
 
         $data['page'] = $url['page'];
     }
-
     $data['path'] = count($url) > 1 ? "?$path" : "";
     
     return $data;
@@ -189,7 +197,7 @@ function showItem($item = [], $admin = false)
             <div class='col-auto m-1 pt-3'>", 
             file_exists("media/caps/{$item['image']}") 
                 ? "<img src='media/caps/{$item['image']}' class='img-thumbnail' data-toggle='modal' data-target='#cap{$item['id']}'>" 
-                : "<div class='img-thumbnail text-center no-image' style='cursor: default;'>no image</div>" 
+                : "<div class='img-thumbnail text-center no-image'>no image</div>"
             ,"</div>
             <div class='col'>
                 <div class='card-body'>

@@ -13,6 +13,7 @@
             <div class="row">
             <?php
                 include "../app/includes/queries/recentlyAdded.php";
+                include "../app/includes/functions/recentlyAdded.php";
                 $items = getRecentlyAdded(9);
                 foreach($items as $item) showRecentlyAdded($item);
             ?>

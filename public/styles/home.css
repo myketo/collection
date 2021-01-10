@@ -5,6 +5,18 @@
     text-overflow: ellipsis;
 }
 
+.img{
+    cursor: pointer;
+}
+
+.no-image{
+    width: 100%;
+    height: 100%;
+    line-height: 200px;
+    user-select: none;
+    cursor: default;
+}
+
 .recent-text::before, 
 .recent-text::after{
     content: "'";

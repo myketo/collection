@@ -1,15 +1,7 @@
-<?php
-    function queryExists($name, $value, $return)
-    {
-        if(isset($_GET[$name]) && ($_GET[$name] == $value)){
-            return $return;
-        }
-    }
-?>
-
 <div class='container collapse' id='sortForm'>
     <form method='GET' class='shadow p-3 m-1 d-flex flex-column align-items-center'>
         <?=!empty($url['search']) ? "<input type='hidden' name='search' value='". getQueryValue('search') ."'>" : ""?>
+        <?=!empty($url['country']) ? "<input type='hidden' name='country' value='". getQueryValue('country') ."'>" : ""?>
         <div class='form-row'>
             <label for='sort_by' class='col-sm-0 col-form-label col-form-label-sm'>Sort by: </label>
             <div class='form-group col-sm-0'>

@@ -3,7 +3,7 @@ include "../app/includes/functions/collection.php";
 include "../app/includes/queries/collection.php";
 
 $url = filterUrlData($_GET);
-$caps_count = countAllRows($url['search']);
+$caps_count = countAllRows($url['search'], $url['country']);
 
 if(!$caps_count){
     echo "<p class='alert-danger'>Sorry, no results found for '{$url['search']}'.</p>";
@@ -31,7 +31,7 @@ if(!$page = pageInfo($caps_count)) headerLocation("collection");
             include "pagination.php";
         }
 
-        $items = getItems($url['sort_by'], $url['order_by'], $page['limit'], $page['offset'], $url['search']);
+        $items = getItems($url['sort_by'], $url['order_by'], $page['limit'], $page['offset'], $url['search'], $url['country']);
         foreach($items as $item) showItem($item, true);
 
         if($page['count'] > 1) include "pagination.php";

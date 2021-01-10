@@ -1,10 +1,12 @@
 <?php
 
-function countAllRows($search = "", $unknown = false)
+function countAllRows($search = "", $country = "", $unknown = false)
 {
     global $conn;
 
     $query = "SELECT COUNT(*) AS 'amount' FROM `collection`";
+
+    if(!empty($country)) $query .= "WHERE `country` = '$country'";
 
     if(!empty($search)){
         $query .= " WHERE ";
@@ -27,11 +29,13 @@ function countAllRows($search = "", $unknown = false)
     return $data['amount'];
 }
 
-function getItems($sort_by, $order_by, $limit, $offset, $search = "", $unknown = false)
+function getItems($sort_by, $order_by, $limit, $offset, $search = "", $country = "", $unknown = false)
 {
     global $conn;
 
     $query = "SELECT * FROM `collection`";
+
+    if(!empty($country)) $query .= "WHERE `country` = '$country'";
 
     if(!empty($search)){
         $query .= " WHERE ";

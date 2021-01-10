@@ -4,6 +4,14 @@
     cursor: pointer;
 }
 
+.no-image{
+    width: 240px;
+    height: 200px;
+    line-height: 200px;
+    user-select: none;
+    cursor: default;
+}
+
 .cap-text{
     white-space: nowrap; 
     width: 100%;

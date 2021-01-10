@@ -20,14 +20,6 @@ main{
   user-select: none;
 }
 
-.no-image{
-  width: 240px;
-  height: 200px;
-  line-height: 200px;
-  user-select: none;
-  cursor: default;
-}
-
 .country-flag{
   height: 25px;
 }
