@@ -6,9 +6,8 @@ $url = filterUrlData($_GET);
 $caps_count = countAllRows($url['search'], $url['country']);
 
 if(!$caps_count){
-    echo "<p class='alert-danger'>Sorry, no results found for '{$url['search']}'.</p>";
-    include "../app/pages/footer.php";
-    die();
+    $msg = "Sorry, no results found for '{$url['search']}'.";
+    showAlert($msg, 'danger', true);
 }
 
 if(!$page = pageInfo($caps_count)) headerLocation("collection");

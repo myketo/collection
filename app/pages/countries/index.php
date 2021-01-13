@@ -1,34 +1,7 @@
 <!-- sortowanie tabeli js'em -->
-
 <?php
-    function getCountries()
-    {
-        global $conn;
-
-        $query = "SELECT `country` AS 'name', COUNT(*) AS 'amount' FROM `collection` WHERE `unknown` = 0 GROUP BY `country` ORDER BY `amount` DESC;";
-        $result = mysqli_query($conn, $query);
-
-        $countries = [];
-        while($row = mysqli_fetch_array($result)){
-            $row['filename'] = strtolower(str_replace(" ", "-", $row['name']));
-            array_push($countries, $row);
-        }
-        
-        return $countries;
-    }
-
-    function showCountry($country)
-    {
-        // <th scope='row'>1</th>
-        echo 
-        "<tr>
-        <td>
-            <img src='media/flags/{$country['filename']}.svg' class='country-flag image-fluid'>
-        </td>
-        <td><a href='collection?country={$country['name']}'>{$country['name']}</a></td>
-        <td>{$country['amount']}</td>
-    </tr>";
-    }
+    include "../app/includes/functions/countries.php";
+    include "../app/includes/queries/countries.php";
     $countries = getCountries();
 ?>
 
@@ -43,9 +16,7 @@
         </thead>
 
         <tbody>
-        <?php
-            foreach($countries as $country) showCountry($country);
-        ?>
+            <?php foreach($countries as $country) showCountry($country); ?>
         </tbody>
     </table>
 </div>

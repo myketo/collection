@@ -66,3 +66,13 @@ function queryExists($name, $value, $return)
         return $return;
     }
 }
+
+function showAlert($msg, $color, $die = false)
+{
+    echo "<p class='alert-$color'>$msg</p>";
+
+    if($die){
+        include "../app/pages/footer.php";
+        die();
+    }
+}

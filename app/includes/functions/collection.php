@@ -195,31 +195,31 @@ function showItem($item = [], $admin = false)
     "<div class='card'>
         <div class='row no-gutters d-flex flex-column align-items-center align-items-md-left flex-md-row'>
             <div class='col-auto m-1 pt-3'>", 
-            file_exists("media/caps/{$item['image']}") 
-                ? "<img src='media/caps/{$item['image']}' class='img-thumbnail' data-toggle='modal' data-target='#cap{$item['id']}'>" 
+            file_exists("media/caps/thumb/{$item['image']}.jpg") 
+                ? "<img src='media/caps/thumb/{$item['image']}.jpg' class='img-thumbnail' data-toggle='modal' data-target='#cap{$item['id']}'>" 
                 : "<div class='img-thumbnail text-center no-image'>no image</div>"
             ,"</div>
             <div class='col'>
                 <div class='card-body'>
                     <div>
                         <h5 class='card-header'>",$item['unknown'] ? $item['unknown'] : $item['brand']," 
-                            <a class='details_link small collapsed float-right d-inline d-md-none' data-toggle='collapse' href='#details",$item['id'],"' role='button' aria-expanded='false' aria-controls='Details'>Details &dArr;</a>
+                            <a class='details_link small collapsed float-right d-inline d-md-none' data-toggle='collapse' href='#details{$item['id']}' role='button' aria-expanded='false' aria-controls='Details'>Details &dArr;</a>
                         </h5>
                     </div>
 
-                    <div class='d-md-block collapse item-details' id='details",$item['id'],"'>
+                    <div class='d-md-block collapse item-details' id='details{$item['id']}'>
                         <ul class='list-group list-group-flush'>
-                            <li class='list-group-item cap-text' title='",$item['text'],"'>",$item['text'],"</li>
-                            <li class='list-group-item'>",$item['color'],"</li>
-                            <li class='list-group-item'>",$item['country'],"</li>
+                            <li class='list-group-item cap-text' title='{$item['text']}'>",$item['text'] ? $item['text'] : "&nbsp;","</li>
+                            <li class='list-group-item'>",$item['color'] ? $item['color'] : "&nbsp;","</li>
+                            <li class='list-group-item'>",$item['country'] ? "<a href='collection?country={$item['country']}'>{$item['country']}</a>" : "&nbsp;","</li>
                         </ul>
 
                         <div class='mt-4 d-flex justify-content-between align-items-center'>
                             <div class='btn-group admin-info'>",
-                                $admin ? "<span class='btn btn-sm btn-outline-secondary disabled'>#".$item['id']."</span>
+                                $admin ? "<span class='btn btn-sm btn-outline-secondary disabled'>#{$item['id']}</span>
                                 <button type='button' class='btn btn-sm btn-outline-secondary'>Edit</button>" : ""
                             ,"</div>
-                            <small class='text-muted'>",$item['created_date'],"</small>
+                            <small class='text-muted'>{$item['created_date']}</small>
                         </div>
                     </div>
                 </div>
@@ -227,20 +227,19 @@ function showItem($item = [], $admin = false)
         </div>
     </div>
 
-    <div class='modal fade' id='cap",$item['id'],"' tabindex='-1' role='dialog'>
+    <div class='modal fade' id='cap{$item['id']}' tabindex='-1' role='dialog'>
         <div class='modal-dialog modal-dialog-centered modal-lg' role='document'>
             <div class='modal-content'>
                 <div class='modal-header'>
-                    <h5 class='modal-title'>",$item['brand'],"</h5>
+                    <h5 class='modal-title'>{$item['brand']}</h5>
                     <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                     </button>
                 </div>
                 <div class='modal-body p-0 d-flex justify-content-center'>
-                    <img src='media/caps/",$item['image'],"' alt='",$item['brand'],"' class='img-fluid rounded-bottom'>
+                    <img src='media/caps/{$item['image']}.jpg' alt='{$item['brand']}' class='img-fluid rounded-bottom'>
                 </div>
             </div>
         </div>
     </div>";
 }
-
