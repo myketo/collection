@@ -8,8 +8,7 @@
         $msg = "Please make sure to fill all the required fields.";
         $color = "danger";
 
-        if($data = verifyNewCapData($_POST)){
-            addNewCap($data);
+        if($data = verifyCapData($_POST) && addNewCap($data)){
             $msg = "Successfully added a new cap to the collection!";
             $color = "success";
         }

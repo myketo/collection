@@ -217,7 +217,7 @@ function showItem($item = [], $admin = false)
                         <div class='mt-4 d-flex justify-content-between align-items-center'>
                             <div class='btn-group admin-info'>",
                                 $admin ? "<span class='btn btn-sm btn-outline-secondary disabled'>#{$item['id']}</span>
-                                <button type='button' class='btn btn-sm btn-outline-secondary'>Edit</button>" : ""
+                                <a class='btn btn-sm btn-outline-secondary' href='admin/edit/{$item['id']}'>Edit</a>" : ""
                             ,"</div>
                             <small class='text-muted'>{$item['created_date']}</small>
                         </div>

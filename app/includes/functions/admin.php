@@ -39,15 +39,15 @@ function uploadImageAndThumbnail($file)
 
     // generating a thumbnail and uploading it
     $image = imagecreatefromjpeg("$path/$img");
-    // thumbnail size is 240px by 200px 
-    $image_resized = imagescale($image, 240, 200);
+    // thumbnail size is 256px by 192px
+    $image_resized = imagescale($image, 256, 192);
     imagejpeg($image_resized, "$path/$thumb");
 
     // return added images name
     return $name;
 }
 
-function verifyNewCapData($data)
+function verifyCapData($data)
 {
     // color was required, so return if it wasn't set
     if(!isset($data['color']) || empty($data['color'])) return;
@@ -57,7 +57,7 @@ function verifyNewCapData($data)
     $data['text'] = isset($data['text']) ? sanitizeInput($data['text']) : "";
     $data['country'] = isset($data['country']) ? sanitizeInput($data['country']) : "";
     // $data['unknown'] = isset($data['unknown']) ? 1 : 0;
-    $data['unknown'] = (int)(empty($data['brand']) || empty($data['country']));
+    $data['unknown'] = (int)empty($data['brand']);
     $data['image'] = uploadImageAndThumbnail($_FILES['image']);
 
     return $data;
