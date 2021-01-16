@@ -189,7 +189,10 @@ function paginationNames($page = 1, $page_count)
 function showItem($item = [], $admin = false)
 {
     // send message with cap id in title
-    if($item['unknown']) $item['unknown'] = "Do you know this cap? <a href='#' class='badge badge-primary'>Help me out.</a>";
+    if($item['unknown']){
+        $link = "mailto:mykys99@gmail.com?subject=Information about cap (id: {$item['id']})";
+        $item['unknown'] = "Do you know this cap? <a href='$link' target='_blank' class='badge badge-primary'>Help me out.</a>";
+    }
     
     echo
     "<div class='card'>
@@ -242,4 +245,16 @@ function showItem($item = [], $admin = false)
             </div>
         </div>
     </div>";
+}
+
+/**
+ * Generate text under results amount based on the query
+ * @param array $url array containing GET data
+ * @return string returns text to be shown as the subtitle
+ */
+function amountSubtitle($url)
+{
+    if(!empty($url['search'])) return "results found";
+    if(!empty($url['country'])) return "caps from {$url['country']}";
+    return "caps collected";
 }

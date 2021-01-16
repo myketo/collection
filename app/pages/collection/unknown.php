@@ -5,7 +5,8 @@
 
 <link rel='stylesheet' href='styles/collection.css'></link>
 <div class="collection-page d-flex flex-column">
-    <h1 class='display-1 text-center'><?=countAllRows("", "", true)?></h1>
+    <h1 class='display-4 text-center caps-count mb-0'><?=countAllRows("", "", true)?></h1>
+    <small class='text-center subtitle mb-5' style='font-size: 120%;'>unknown caps</small>
 
     <?php
         $items = getItems("id", "asc", "1000", "0", "", "", true);
