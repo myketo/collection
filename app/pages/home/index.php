@@ -20,7 +20,7 @@
         <div class="container">
             <h2 class='mb-4'>Recently added: </h2>
             <div class="row">
-                <?php foreach($items as $item) showRecentlyAdded($item); ?>
+                <?php foreach($items as $item) showRecentlyAdded($item, loggedIn()); ?>
             </div>
         </div>
     </div>

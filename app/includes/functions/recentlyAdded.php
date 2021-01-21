@@ -3,8 +3,11 @@
 function showRecentlyAdded($item = [], $admin = false)
 {
     // send message with cap id in title
-    if($item['unknown']) $item['unknown'] = "Do you know this cap? <a href='#' class='badge badge-primary'>Help me out.</a>";
-
+    if($item['unknown']){
+        $link = "mailto:mykys99@gmail.com?subject=Information about cap (id: {$item['id']})";
+        $item['unknown'] = "Do you know this cap? <a href='$link' target='_blank' class='badge badge-primary'>Help me out.</a>";
+    }
+    
     echo 
     "<div class='col-md-4 recent-cap'>
         <div class='card mb-4 shadow-sm'>",

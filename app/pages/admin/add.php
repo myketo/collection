@@ -2,6 +2,8 @@
     include "../app/includes/functions/admin.php";
     include "../app/includes/queries/admin.php";
 
+    if(!loggedIn()) headerLocation('..');
+
     if(isset($_POST['submitAdd'])){
         unset($_POST['submitAdd']);
         

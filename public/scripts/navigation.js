@@ -2,16 +2,15 @@ $(function() {
     var url = window.location.href;
     url = url.split("?")[0];
     url = url.split("/")[5];
-    console.log(url);
-    
-    // $('.nav-item a').filter(function() {
-    //     return this.href == url;
-    // }).parent().addClass('active');
 
     $("#nav-"+url).addClass('active');
 
     if($('.nav-item').hasClass('active') === false){
         $("#home").addClass('active');
+    }
+
+    if($(document).height() <= $(window).height()){ 
+       $("#scroll-btn").addClass("d-none");
     }
 });
 

@@ -33,7 +33,7 @@ if(!$page = pageInfo($caps_count)) headerLocation("collection");
         }
 
         $items = getItems($url['sort_by'], $url['order_by'], $page['limit'], $page['offset'], $url['search'], $url['country']);
-        foreach($items as $item) showItem($item, true);
+        foreach($items as $item) showItem($item, loggedIn());
 
         if($page['count'] > 1) include "pagination.php";
     ?>

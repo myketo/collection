@@ -50,6 +50,7 @@ function getDateFromDatetime($datetime)
 
 function headerLocation($location)
 {
+    // check for "home" location and redirect to main subpage, replace ".." and "." in files
     header("Location: " . $location);
     die();
     exit;
@@ -75,4 +76,20 @@ function showAlert($msg, $color, $die = false)
         include "../app/pages/footer.php";
         die();
     }
+}
+
+function loggedIn()
+{
+    return isset($_SESSION['logged_in']);
+}
+
+function logout($url)
+{
+    if($url != "logout") return;
+
+    if(isset($_SESSION['logged_in'])){
+        unset($_SESSION['logged_in']);
+    }
+    
+    headerLocation(".");
 }

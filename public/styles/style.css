@@ -5,10 +5,11 @@ body {
 
 body {
   padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
 }
 
 main{
-  min-height: 84vh;
+  min-height: 100%;
 }
 
 .bd-placeholder-img {
@@ -25,10 +26,6 @@ main{
 }
 
 @media (min-width: 768px) {
-  main{
-    min-height: 87vh;
-  }
-
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }

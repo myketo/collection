@@ -1,8 +1,8 @@
-<?php
-    if(!isset($_GET['id'])) headerLocation('..');
-
+<?php    
     include "../app/includes/functions/admin.php";
     include "../app/includes/queries/admin.php";
+
+    if(!loggedIn() || !isset($_GET['id'])) headerLocation('..');
 
     $item = getItemById($_GET['id']);
     if(!$item) headerLocation('..');
