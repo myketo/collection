@@ -23,6 +23,28 @@ function editCap($data)
     return mysqli_stmt_execute($stmt);
 }
 
+function deleteCap($id)
+{
+    global $conn;
+    $query = "DELETE FROM `collection` WHERE `id` = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($stmt, $query);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+
+    return mysqli_stmt_execute($stmt);
+}
+
+function deleteCapImage($id)
+{
+    global $conn;
+    $query = "UPDATE `collection` SET `image` = NULL WHERE `id` = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($stmt, $query);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+
+    return mysqli_stmt_execute($stmt);
+}
+
 function getItemById($id)
 {
     global $conn;
@@ -36,4 +58,30 @@ function getItemById($id)
     $result = mysqli_stmt_get_result($stmt);
 
     return mysqli_fetch_array($result);
+}
+
+function getRecentChanges($limit = 5)
+{
+    global $conn;
+
+    $query = "SELECT DATE_FORMAT(`created_at`, '%Y-%m-%d') AS 'created_at', DATE_FORMAT(`updated_at`, '%Y-%m-%d') AS 'updated_at' FROM `collection` GROUP BY `created_at`, `updated_at` ORDER BY `updated_at` DESC, `created_at` DESC LIMIT $limit;";
+    $result = mysqli_query($conn, $query);
+
+    $dates = [];
+    foreach($result as $row) array_push($dates, $row);
+
+    return $dates;
+}
+
+function getActionsOnDate($date)
+{
+    global $conn;
+
+    $query = "SELECT `id`, `brand`, `created_at`, `updated_at` FROM `collection` WHERE `created_at` LIKE '$date%' OR `updated_at` LIKE '$date%' ORDER BY `updated_at` DESC, `created_at` DESC LIMIT 10;";
+    $result = mysqli_query($conn, $query);
+
+    $actions = [];
+    foreach($result as $row) array_push($actions, $row);
+
+    return $actions;
 }

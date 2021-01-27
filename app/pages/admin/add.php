@@ -10,7 +10,7 @@
         $msg = "Please make sure to fill all the required fields.";
         $color = "danger";
 
-        if($data = verifyCapData($_POST) && addNewCap($data)){
+        if(($data = verifyCapData($_POST)) && addNewCap($data)){
             $msg = "Successfully added a new cap to the collection!";
             $color = "success";
         }
@@ -21,7 +21,7 @@
 
 <div class='add-new-page d-flex flex-column align-items-center'>
     <h1 class='text-center m-2'>Add new cap</h1>
-    <form method='POST' enctype='multipart/form-data' class='w-50'>
+    <form method='POST' enctype='multipart/form-data' class='col-md-7'>
         <div class='form-group'>
             <label for='newBrand'>Brand</label>
             <input type='text' name='brand' class='form-control' id='newBrand' placeholder='Brand' autofocus>

@@ -12,8 +12,8 @@ function showRecentlyAdded($item = [], $admin = false)
     "<div class='col-md-4 recent-cap'>
         <div class='card mb-4 shadow-sm'>",
             file_exists("media/caps/thumb/{$item['image']}.jpg") 
-            ? "<img src='media/caps/thumb/{$item['image']}.jpg' class='img' data-toggle='modal' data-target='#cap{$item['id']}'>" 
-            : "<div class='img text-center no-image'>no image</div>"
+            ? "<img src='media/caps/thumb/{$item['image']}.jpg' class='img card-img-top' data-toggle='modal' data-target='#cap{$item['id']}'>" 
+            : "<div class='card-img-top text-center no-image'>no image</div>"
             ,"<div class='card-body p-2 p-lg-3'>
                 <h6 class='card-header'>",$item['unknown'] ? $item['unknown'] : $item['brand'],"</h6>
                 <ul class='list-group list-group-flush'>
@@ -25,7 +25,7 @@ function showRecentlyAdded($item = [], $admin = false)
                 <div class='mt-4 d-flex justify-content-between align-items-center px-2'>
                     <div class='btn-group admin-info'>",
                         $admin ? "<span class='btn btn-sm btn-outline-secondary disabled'>#{$item['id']}</span>
-                        <button type='button' class='btn btn-sm btn-outline-secondary'>Edit</button>" : ""
+                        <a class='btn btn-sm btn-outline-secondary' href='admin/edit/{$item['id']}'>Edit</a>" : ""
                     ,"</div>
                     <small class='text-muted'>{$item['created_date']}</small>
                 </div>

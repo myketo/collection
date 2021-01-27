@@ -25,3 +25,5 @@
         </div>
     </div>
 </div>
+
+<script src='scripts/scale_no_image.js'></script>

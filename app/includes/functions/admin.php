@@ -1,5 +1,63 @@
 <?php
 
+function checkFormSubmits($data, $item)
+{
+    if(isset($data['submitDelete'])){
+        $id = $_GET['id'];
+        deleteImageAndThumbnail($id);
+
+        if(deleteCap($id)){
+            $msg = "Successfully deleted cap #$id! (Go to <a href='admin'>admin page</a>)";
+            $color = "success";
+            showAlert($msg, $color);
+            die();
+        }
+
+        showAlert("An error occured while deleting.", "danger");
+    }
+
+    if(isset($data['deleteImage'])){
+        deleteImageAndThumbnail($item['image']);
+
+        $msg = "An error occured while deleting the image.";
+        $color = "danger";
+
+        if(deleteCapImage($_GET['id'])){
+            $item['image'] = "";
+            $msg = "Successfully deleted caps image!";
+            $color = "success";
+        }
+
+        showAlert($msg, $color);
+    }
+    
+    if(isset($data['submitEdit'])){
+        unset($data['submitEdit']);
+
+        $msg = "An error occured while editing.";
+        $color = "danger";
+
+        if(($_FILES['image']['error'] == 0 || $_FILES['image']['error'] == 4) && $data = verifyCapData($data)){
+            if($_FILES['image']['error'] == 0){
+                deleteImageAndThumbnail($item['image']);
+            }else{
+                $data['image'] = $item['image'];
+            }
+
+            if(editCap($data)){
+                $item = $data;
+
+                $msg = "Successfully edited cap data!";
+                $color = "success";
+            }
+        }
+
+        showAlert($msg, $color);
+    }
+
+    return $item;
+}
+
 function sanitizeInput($input)
 {
     return filter_var(trim($input), FILTER_SANITIZE_STRING);
@@ -61,4 +119,33 @@ function verifyCapData($data)
     $data['image'] = uploadImageAndThumbnail($_FILES['image']);
 
     return $data;
+}
+
+function recentDates($limit = 5)
+{
+    $dates = getRecentChanges($limit);
+    $unique_dates = [];
+
+    foreach($dates as $date){
+        if(!in_array($date['created_at'], $unique_dates)) array_push($unique_dates, $date['created_at']);
+        if(!in_array($date['updated_at'], $unique_dates) && !is_null($date['updated_at'])) array_push($unique_dates, $date['updated_at']);
+    }
+
+    return $unique_dates;
+}
+
+function actionsOnDates($dates)
+{
+    $actions = [];
+    for($i = 0; $i < count($dates); $i++){
+        array_push($actions, getActionsOnDate($dates[$i]));
+    }
+
+    return $actions;
+}
+
+function deleteImageAndThumbnail($img)
+{
+    if(file_exists("media/caps/$img.jpg")) unlink("media/caps/$img.jpg");
+    if(file_exists("media/caps/thumb/$img.jpg")) unlink("media/caps/thumb/$img.jpg");
 }

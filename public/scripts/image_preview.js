@@ -17,3 +17,8 @@ $("#newImage").change(function() {
         }
     }
 });
+
+$("input[type=reset]").click(function(){
+    $(".custom-file-label").html("Choose file...");
+    $('#imagePreview').attr('src', '');
+});
