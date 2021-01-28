@@ -73,11 +73,11 @@ function getRecentChanges($limit = 5)
     return $dates;
 }
 
-function getActionsOnDate($date)
+function getActionsOnDate($date, $limit = 10)
 {
     global $conn;
 
-    $query = "SELECT `id`, `brand`, `created_at`, `updated_at` FROM `collection` WHERE `created_at` LIKE '$date%' OR `updated_at` LIKE '$date%' ORDER BY `updated_at` DESC, `created_at` DESC LIMIT 10;";
+    $query = "SELECT `id`, `brand`, `created_at`, `updated_at` FROM `collection` WHERE `created_at` LIKE '$date%' OR `updated_at` LIKE '$date%' ORDER BY `updated_at` DESC, `created_at` DESC LIMIT $limit;";
     $result = mysqli_query($conn, $query);
 
     $actions = [];

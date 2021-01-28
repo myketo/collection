@@ -8,6 +8,7 @@
     if(!$item) headerLocation('..');
 
     $item = checkFormSubmits($_POST, $item);
+    $countries = include "../app/includes/countries_array.php";
 ?>
 
 <div class='edit-page d-flex flex-column align-items-center'>
@@ -30,8 +31,15 @@
         </div>
 
         <div class='form-group'>
-            <label for='editCountry'>Country</label>
-            <input type='text' name='country' class='form-control' id='editCountry' placeholder='Country' value='<?=$item['country']?>'>
+            <label for='newCountry'>Country</label>
+            <select name='country' class='form-control form-select' id='newCountry'>
+            <?php
+            foreach($countries as $country){
+                $index = array_search($country, $countries);
+                echo "<option value='$index' ",$item['country'] == $index ? 'selected' : '',">$country</option>";
+            }
+            ?>
+            </select>
         </div>
 
         <div class='form-group'>

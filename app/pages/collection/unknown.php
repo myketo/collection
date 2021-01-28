@@ -10,7 +10,7 @@
 
     <?php
         $items = getItems("id", "asc", "1000", "0", "", "", true);
-        foreach($items as $item) showItem($item);
+        foreach($items as $item) showItem($item, $_SESSION['logged_in']);
     ?>
 
     <script src='scripts/show_details.js'></script>

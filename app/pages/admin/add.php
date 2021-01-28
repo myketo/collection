@@ -17,6 +17,8 @@
 
         showAlert($msg, $color);
     }
+
+    $countries = include "../app/includes/countries_array.php";
 ?>
 
 <div class='add-new-page d-flex flex-column align-items-center'>
@@ -39,7 +41,13 @@
 
         <div class='form-group'>
             <label for='newCountry'>Country</label>
-            <input type='text' name='country' class='form-control' id='newCountry' placeholder='Country'>
+            <select name='country' class='form-control form-select' id='newCountry'>
+            <?php
+            foreach($countries as $country){
+                echo "<option value='",array_search($country, $countries),"'>$country</option>";
+            }
+            ?>
+            </select>
         </div>
 
         <div class='form-group'>
@@ -58,7 +66,11 @@
         </div> -->
 
         <div class='form-group text-center'>
-            <input type="submit" name='submitAdd' class="btn btn-primary col mt-4" value='Submit Add'></input>
+            <input type="submit" name='submitAdd' class="btn btn-primary col mt-4" value='Submit Add'>
+        </div>
+
+        <div class='form-group text-right p-0'>
+            <input type='reset' class='btn btn-secondary mt-2' value='Reset Data'>
         </div>
     </form>
 </div>

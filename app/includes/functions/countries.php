@@ -2,13 +2,11 @@
 
 function showCountry($country)
 {
-    // <th scope='row'>1</th>
-    echo 
-    "<tr>
-    <td>
-        <img src='media/flags/{$country['filename']}.svg' class='country-flag image-fluid'>
-    </td>
-    <td><a href='collection?country={$country['name']}'>{$country['name']}</a></td>
-    <td>{$country['amount']}</td>
-</tr>";
+    $countries = include "../app/includes/countries_array.php";
+
+    echo "<tr>
+        <td><img src='media/flags/{$country['name']}.svg' class='country-flag image-fluid rounded shadow'></td>
+        <td><a href='collection?country={$country['name']}'>{$countries[$country['name']]}</a></td>
+        <td>{$country['amount']}</td>
+    </tr>";
 }

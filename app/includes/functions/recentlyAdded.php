@@ -2,6 +2,8 @@
 
 function showRecentlyAdded($item = [], $admin = false)
 {
+    $countries = include "../app/includes/countries_array.php";
+
     // send message with cap id in title
     if($item['unknown']){
         $link = "mailto:mykys99@gmail.com?subject=Information about cap (id: {$item['id']})";
@@ -19,7 +21,7 @@ function showRecentlyAdded($item = [], $admin = false)
                 <ul class='list-group list-group-flush'>
                     <li class='list-group-item recent-text' title='{$item['text']}'>",$item['text'] ? $item['text'] : "&nbsp;","</li>
                     <li class='list-group-item'>",$item['color'] ? $item['color'] : "&nbsp;","</li>
-                    <li class='list-group-item'>",$item['country'] ? "<a href='collection?country={$item['country']}'>{$item['country']}</a>" : "&nbsp;","</li>
+                    <li class='list-group-item'>",$item['country'] ? "<a href='collection?country={$item['country']}'>{$countries[$item['country']]}</a>" : "&nbsp;","</li>
                 </ul>
 
                 <div class='mt-4 d-flex justify-content-between align-items-center px-2'>

@@ -134,11 +134,11 @@ function recentDates($limit = 5)
     return $unique_dates;
 }
 
-function actionsOnDates($dates)
+function actionsOnDates($dates, $limit = 10)
 {
     $actions = [];
     for($i = 0; $i < count($dates); $i++){
-        array_push($actions, getActionsOnDate($dates[$i]));
+        array_push($actions, getActionsOnDate($dates[$i], $limit));
     }
 
     return $actions;
