@@ -1,6 +1,6 @@
 <?php
 
-function countAllRows($search = "", $country = "", $unknown = false)
+function countAllRows($search = "", $field = "", $country = "", $unknown = false)
 {
     global $conn;
 
@@ -12,11 +12,25 @@ function countAllRows($search = "", $country = "", $unknown = false)
         $query .= " WHERE ";
         $columns = ['brand', 'text', 'country', 'color', 'created_at'];
         
-        $i = 1;
-        foreach($columns as $column){
-            $query .= "`$column` LIKE '%$search%'";
-            $query .= $i != count($columns) ? " OR " : ";";
-            $i++;
+        if(!empty($field)){
+            if($field == "country"){
+                $search = getCountryISO($search);
+                $i = 1;
+                foreach($search as $iso){
+                    $query .= "`$field` = '$iso'";
+                    $query .= $i != count($search) ? " OR " : "";
+                    $i++;
+                }
+            }else{
+                $query .= "`$field` LIKE '%$search%'";
+            }
+        }else{
+            $i = 1;
+            foreach($columns as $column){
+                $query .= "`$column` LIKE '%$search%'";
+                $query .= $i != count($columns) ? " OR " : "";
+                $i++;
+            }
         }
     }
 
@@ -29,7 +43,7 @@ function countAllRows($search = "", $country = "", $unknown = false)
     return $data['amount'];
 }
 
-function getItems($sort_by, $order_by, $limit, $offset, $search = "", $country = "", $unknown = false)
+function getItems($sort_by, $order_by, $limit, $offset, $search = "", $field = "", $country = "", $unknown = false)
 {
     global $conn;
 
@@ -41,11 +55,25 @@ function getItems($sort_by, $order_by, $limit, $offset, $search = "", $country =
         $query .= " WHERE ";
         $columns = ['brand', 'text', 'country', 'color', 'created_at'];
 
-        $i = 1;
-        foreach($columns as $column){
-            $query .= "`$column` LIKE '%$search%'";
-            $query .= $i != count($columns) ? " OR " : "";
-            $i++;
+        if(!empty($field)){
+            if($field == "country"){
+                $search = getCountryISO($search);
+                $i = 1;
+                foreach($search as $iso){
+                    $query .= "`$field` = '$iso'";
+                    $query .= $i != count($search) ? " OR " : "";
+                    $i++;
+                }
+            }else{
+                $query .= "`$field` LIKE '%$search%'";
+            }
+        }else{
+            $i = 1;
+            foreach($columns as $column){
+                $query .= "`$column` LIKE '%$search%'";
+                $query .= $i != count($columns) ? " OR " : "";
+                $i++;
+            }
         }
     }
 

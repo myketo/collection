@@ -5,7 +5,7 @@
 ?>
 
 <link rel='stylesheet' href='styles/signin.css'></link>
-<div class='login-page'>
+<div class='subpage login-page'>
     <form method='POST' class='form-signin'>
         <h1 class='mb-3 text-center'>Sign in</h1>
         <input name='login' id='inputLogin' class='form-control' type='text' placeholder='Login' required autofocus>

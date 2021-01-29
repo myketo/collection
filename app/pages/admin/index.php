@@ -5,7 +5,7 @@
     if(!loggedIn()) headerLocation(".");
 ?>
 
-<div class='admin-page'>
+<div class='subpage admin-page'>
     <a href='logout' class='btn btn-primary'>Logout</a>
     <br>
     dodaj

@@ -22,10 +22,9 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <div class="btn-group">
-                            <a href='collection' class='nav-link' id='nav-collection'>Collection</a>
-                            <a href='#' class="nav-link dropdown-toggle dropdown-toggle-split ml-2 pl-lg-0 ml-lg-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            </a>
-                            <div class="dropdown-menu">
+                            <a href='collection' class='nav-link btn' id='nav-collection'>Collection</a>
+                            <a class="nav-link btn dropdown-toggle dropdown-toggle-split ml-2 pl-lg-0 ml-lg-0" data-toggle="dropdown"></a>
+                            <div class="dropdown-menu py-1">
                                 <a class="dropdown-item" href="collection/unknown">Unknown</a>
                             </div>
                         </div>
@@ -36,10 +35,10 @@
                     <li class='nav-item'>
                     <?=loggedIn() ? 
                     "<div class='btn-group admin-links'>
-                        <a href='admin' class='nav-link' id='nav-admin'>Admin</a>
-                        <a href='#' class='nav-link dropdown-toggle dropdown-toggle-split ml-2 pl-lg-0 ml-lg-0' data-toggle='dropdown'>
+                        <a href='admin' class='nav-link btn' id='nav-admin'>Admin</a>
+                        <a class='nav-link btn dropdown-toggle dropdown-toggle-split ml-2 pl-lg-0 ml-lg-0' data-toggle='dropdown'>
                         </a>
-                        <div class='dropdown-menu'>
+                        <div class='dropdown-menu py-1'>
                             <a class='dropdown-item' href='admin/add'>Add new</a>
                             <a class='dropdown-item' href='admin/activity'>Activity</a>
                         </div>
@@ -47,13 +46,13 @@
                     </li>
                 </ul>
                 <form method='GET' action='collection' class="form-inline my-2 my-lg-0">
-                    <!-- <select class="form-control mr-sm-2 mb-2 mb-md-0">
-                        <option>All</option>
-                        <option>Brand</option>
-                        <option>Text</option>
-                        <option>Color</option>
-                        <option>Country</option>
-                    </select> -->
+                    <select name='field' class="form-control mr-sm-2 mb-2 mb-md-0">
+                        <option value=''>All</option>
+                        <option value='brand' <?=getQueryValue('field') == 'brand' ? 'selected' : ''?>>Brand</option>
+                        <option value='text' <?=getQueryValue('field') == 'text' ? 'selected' : ''?>>Text</option>
+                        <!-- <option value='color'>Color</option> -->
+                        <option value='country' <?=getQueryValue('field') == 'country' ? 'selected' : ''?>>Country</option>
+                    </select>
                     <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" value="<?=getQueryValue('search');?>">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>

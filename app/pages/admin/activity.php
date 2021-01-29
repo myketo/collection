@@ -6,7 +6,7 @@
     $actions = actionsOnDates($dates, 50);
 ?>
 
-<div class='activity-page d-flex flex-column p-4'>
+<div class='subpage activity-page d-flex flex-column p-4'>
     <h1 class='text-center'>Activity History</h1>
 
     <div class='row'>

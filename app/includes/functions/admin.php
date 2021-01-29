@@ -108,11 +108,12 @@ function uploadImageAndThumbnail($file)
 function verifyCapData($data)
 {
     // color was required, so return if it wasn't set
-    if(!isset($data['color']) || empty($data['color'])) return;
+    // if(!isset($data['color']) || empty($data['color'])) return;
 
     // sanitize all fields or set as null if empty
     $data['brand'] = isset($data['brand']) ? sanitizeInput($data['brand']) : "";
     $data['text'] = isset($data['text']) ? sanitizeInput($data['text']) : "";
+    $data['color'] = isset($data['color']) ? sanitizeInput($data['color']) : "";    // delete if return on empty
     $data['country'] = isset($data['country']) ? sanitizeInput($data['country']) : "";
     // $data['unknown'] = isset($data['unknown']) ? 1 : 0;
     $data['unknown'] = (int)empty($data['brand']);

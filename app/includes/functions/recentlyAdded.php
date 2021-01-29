@@ -20,7 +20,7 @@ function showRecentlyAdded($item = [], $admin = false)
                 <h6 class='card-header'>",$item['unknown'] ? $item['unknown'] : $item['brand'],"</h6>
                 <ul class='list-group list-group-flush'>
                     <li class='list-group-item recent-text' title='{$item['text']}'>",$item['text'] ? $item['text'] : "&nbsp;","</li>
-                    <li class='list-group-item'>",$item['color'] ? $item['color'] : "&nbsp;","</li>
+                    <!-- <li class='list-group-item'>",$item['color'] ? $item['color'] : "&nbsp;","</li> -->
                     <li class='list-group-item'>",$item['country'] ? "<a href='collection?country={$item['country']}'>{$countries[$item['country']]}</a>" : "&nbsp;","</li>
                 </ul>
 

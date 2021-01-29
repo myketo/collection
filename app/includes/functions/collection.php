@@ -37,7 +37,8 @@ function pageInfo($caps_count, $limit = 10)
 function filterUrlData($url = [])
 {
     // valid values for sort_by and order_by
-    $valid_sort = ["brand", "text", "color", "country"];
+    $valid_sort = ["brand", "text", "color", "country", "field"];
+    $valid_field = ["brand", "text", "color", "country"];
     $valid_order = ["asc", "desc"];
 
     // setting default values
@@ -45,6 +46,7 @@ function filterUrlData($url = [])
     $data = [
         'country' => '',
         'search' => '',
+        'field' => '',
         'sort_by' => 'id',
         'order_by' => 'desc',
         'page' => 1
@@ -53,17 +55,28 @@ function filterUrlData($url = [])
     // check country query (if search isn't set)
     if(isset($url['country']) && !isset($url['search'])){
         $url['country'] = filter_input(INPUT_GET, 'country', FILTER_SANITIZE_STRING);
-        if(empty($url['country'])) headerLocation('colleciton');
+        if(empty($url['country'])) headerLocation('collection');
         $path .= "country={$url['country']}";
         $data['country'] = $url['country'];
     }
 
     // check search query (if country isn't set)
     if(isset($url['search']) && !isset($url['country'])){
-        $url['search'] = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
+        // $url['search'] = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
+        include "../app/includes/connect.php";
+        $url['search'] = mysqli_escape_string($conn, $_GET['search']);
         if(empty($url['search'])) headerLocation("collection");
+
         $path .= "search={$url['search']}";
         $data['search'] = $url['search'];
+
+        if(isset($url['field'])){
+            $url['field'] = filter_input(INPUT_GET, 'field', FILTER_SANITIZE_STRING);
+            if(empty($url['field'])) headerLocation("collection?$path");
+
+            $path .= "&field={$url['field']}";
+            $data['field'] = in_array($url['field'], $valid_field) ? $url['field'] : "";
+        }
     }
 
     // check sort & order query
@@ -199,7 +212,7 @@ function showItem($item = [], $admin = false)
     echo
     "<div class='card'>
         <div class='row no-gutters d-flex flex-column align-items-center align-items-md-left flex-md-row'>
-            <div class='col-auto m-1 pt-3'>", 
+            <div class='col-auto m-1 py-1'>", 
             file_exists("media/caps/thumb/{$item['image']}.jpg") 
                 ? "<img src='media/caps/thumb/{$item['image']}.jpg' class='img-thumbnail' data-toggle='modal' data-target='#cap{$item['id']}'>" 
                 : "<div class='img-thumbnail text-center no-image'>no image</div>"
@@ -207,15 +220,15 @@ function showItem($item = [], $admin = false)
             <div class='col'>
                 <div class='card-body'>
                     <div>
-                        <h5 class='card-header'>",$item['unknown'] ? $item['unknown'] : $item['brand']," 
+                        <h4 class='card-header font-weight-bold mb-2'>",$item['unknown'] ? $item['unknown'] : $item['brand']," 
                             <a class='details_link small collapsed float-right d-inline d-md-none' data-toggle='collapse' href='#details{$item['id']}' role='button' aria-expanded='false' aria-controls='Details'>Details &dArr;</a>
-                        </h5>
+                        </h4>
                     </div>
 
                     <div class='d-md-block collapse item-details' id='details{$item['id']}'>
                         <ul class='list-group list-group-flush'>
                             <li class='list-group-item cap-text' title='{$item['text']}'>",$item['text'] ? $item['text'] : "&nbsp;","</li>
-                            <li class='list-group-item'>",$item['color'] ? $item['color'] : "&nbsp;","</li>
+                            <!-- <li class='list-group-item'>",$item['color'] ? $item['color'] : "&nbsp;","</li> -->
                             <li class='list-group-item'>",$item['country'] ? "<a href='collection?country={$item['country']}'>{$countries[$item['country']]}</a>" : "&nbsp;","</li>
                         </ul>
 

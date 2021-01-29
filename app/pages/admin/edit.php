@@ -11,7 +11,7 @@
     $countries = include "../app/includes/countries_array.php";
 ?>
 
-<div class='edit-page d-flex flex-column align-items-center'>
+<div class='subpage edit-page d-flex flex-column align-items-center'>
     <h1 class='text-center m-3'>Edit #<?=$item['id']?></h1>
     <form method='POST' enctype='multipart/form-data' class='col-md-7' id='editForm'>
         <input type='hidden' name='id' value='<?=$item['id']?>'>

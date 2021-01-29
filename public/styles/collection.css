@@ -13,10 +13,15 @@
 }
 
 .cap-text{
-    white-space: nowrap; 
+    /* white-space: nowrap;  */
     width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+}
+
+.list-group-item{
+    font-size: 115%;
+    padding-top: 1rem;
 }
 
 .cap-text::before, 

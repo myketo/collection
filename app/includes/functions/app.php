@@ -93,3 +93,14 @@ function logout($url)
     
     headerLocation(".");
 }
+
+function getCountryISO($country)
+{
+    $countries = include "../app/includes/countries_array.php";
+
+    $input = ucwords($country);
+    $input = preg_quote($input, '~');
+
+    $result = preg_grep("~$input~", $countries);
+    return count($result) ? array_keys($result) : [$country];
+}

@@ -21,7 +21,7 @@
     $countries = include "../app/includes/countries_array.php";
 ?>
 
-<div class='add-new-page d-flex flex-column align-items-center'>
+<div class='subpage add-new-page d-flex flex-column align-items-center'>
     <h1 class='text-center m-2'>Add new cap</h1>
     <form method='POST' enctype='multipart/form-data' class='col-md-7'>
         <div class='form-group'>

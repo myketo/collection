@@ -12,7 +12,11 @@ main{
   min-height: 100%;
 }
 
-.bd-placeholder-img {
+.subpage{
+  padding-top: 2rem;
+}
+
+.bd-placeholder-img{
   font-size: 1.125rem;
   text-anchor: middle;
   -webkit-user-select: none;
@@ -26,7 +30,7 @@ main{
 }
 
 @media (min-width: 768px) {
-  .bd-placeholder-img-lg {
+  .bd-placeholder-img-lg{
     font-size: 3.5rem;
   }
 

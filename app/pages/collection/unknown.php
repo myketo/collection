@@ -4,13 +4,13 @@
 ?>
 
 <link rel='stylesheet' href='styles/collection.css'></link>
-<div class="collection-page d-flex flex-column">
-    <h1 class='display-4 text-center caps-count mb-0'><?=countAllRows("", "", true)?></h1>
+<div class="subpage collection-page d-flex flex-column">
+    <h1 class='display-4 text-center caps-count mb-0'><?=countAllRows("", "", "", true)?></h1>
     <small class='text-center subtitle mb-5' style='font-size: 120%;'>unknown caps</small>
 
     <?php
-        $items = getItems("id", "asc", "1000", "0", "", "", true);
-        foreach($items as $item) showItem($item, $_SESSION['logged_in']);
+        $items = getItems("id", "asc", "1000", "0", "", "", "", true);
+        foreach($items as $item) showItem($item, loggedIn());
     ?>
 
     <script src='scripts/show_details.js'></script>
