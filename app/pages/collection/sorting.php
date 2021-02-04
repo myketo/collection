@@ -9,7 +9,6 @@
                     <option value='date' <?=queryExists('sort_by', 'created_at', 'selected')?>>Date</option>
                     <option value='brand' <?=queryExists('sort_by', 'brand', 'selected')?>>Brand</option>
                     <option value='text' <?=queryExists('sort_by', 'text', 'selected')?>>Text</option>
-                    <option value='color' <?=queryExists('sort_by', 'color', 'selected')?>>Color</option>
                     <option value='country' <?=queryExists('sort_by', 'country', 'selected')?>>Country</option>
                 </select>
             </div>

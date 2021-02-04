@@ -77,6 +77,11 @@ function filterUrlData($url = [])
             $path .= "&field={$url['field']}";
             $data['field'] = in_array($url['field'], $valid_field) ? $url['field'] : "";
         }
+
+        if(!isset($url['sort_by'])){
+            $data['sort_by'] = "brand";
+            $data['order_by'] = "asc";
+        }
     }
 
     // check sort & order query
@@ -87,8 +92,8 @@ function filterUrlData($url = [])
         $path .= (isset($url['country']) || isset($url['search'])) ? "&" : "";
         $path .= "sort_by={$url['sort_by']}&order_by={$url['order_by']}";
 
-        $data['sort_by'] = in_array($url['sort_by'], $valid_sort) ? $url['sort_by'] : "id";
-        $data['order_by'] = in_array($url['order_by'], $valid_order) ? $url['order_by'] : "desc";
+        $data['sort_by'] = in_array($url['sort_by'], $valid_sort) ? $url['sort_by'] : $data['sort_by'];
+        $data['order_by'] = in_array($url['order_by'], $valid_order) ? $url['order_by'] : $data['order_by'];
     }
 
     // path without page data

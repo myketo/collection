@@ -49,35 +49,37 @@ function getItems($sort_by, $order_by, $limit, $offset, $search = "", $field = "
 
     $query = "SELECT * FROM `collection`";
 
-    if(!empty($country)) $query .= "WHERE `country` = '$country'";
+    if(!empty($country) || !empty($search) || !empty($field) || !$unknown){
+        $query .= " WHERE `unknown` = " . (int)$unknown;
+    }
+
+    if(!empty($country)) $query .= " AND `country` = '$country'";
 
     if(!empty($search)){
-        $query .= " WHERE ";
         $columns = ['brand', 'text', 'country', 'color', 'created_at'];
-
+        $query .= " AND ";
         if(!empty($field)){
             if($field == "country"){
                 $search = getCountryISO($search);
+                
                 $i = 1;
                 foreach($search as $iso){
-                    $query .= "`$field` = '$iso'";
+                    $query .= " `$field` = '$iso'";
                     $query .= $i != count($search) ? " OR " : "";
                     $i++;
                 }
             }else{
-                $query .= "`$field` LIKE '%$search%'";
+                $query .= " `$field` LIKE '%$search%'";
             }
         }else{
             $i = 1;
             foreach($columns as $column){
-                $query .= "`$column` LIKE '%$search%'";
+                $query .= " `$column` LIKE '%$search%'";
                 $query .= $i != count($columns) ? " OR " : "";
                 $i++;
             }
         }
     }
-
-    if($unknown) $query .= " WHERE `unknown` = 1";
 
     $query .= " ORDER BY `$sort_by` $order_by LIMIT $limit OFFSET $offset;";
     $result = mysqli_query($conn, $query);

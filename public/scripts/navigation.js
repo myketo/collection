@@ -2,8 +2,10 @@ $(function() {
     var url = window.location.href;
     url = url.split("?")[0];
     url = url.split("/")[5];
-
-    $("#nav-"+url).addClass('active');
+    
+    if(url != "#" && $("#nav-"+url).length){
+        $("#nav-"+url).addClass('active');
+    }
 
     if($('.nav-item').hasClass('active') === false){
         $("#home").addClass('active');

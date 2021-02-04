@@ -1,10 +1,3 @@
-.recent-text{
-    /* white-space: nowrap;  */
-    width: 100%;
-    /* overflow: hidden; */
-    /* text-overflow: ellipsis; */
-}
-
 .img{
     cursor: pointer;
 }
@@ -17,4 +10,21 @@
 .recent-text::before, 
 .recent-text::after{
     content: "'";
+}
+
+.modal-dialog{
+    width: 95vw;
+}
+
+@media (min-width: 768px) {
+    .recent-text{
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .modal-dialog{
+        width: 100vh;
+    }
 }

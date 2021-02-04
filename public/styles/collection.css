@@ -28,3 +28,13 @@
 .cap-text::after{
     content: "'";
 }
+
+.modal-dialog{
+    width: 95vw;
+}
+
+@media (min-width: 768px) {
+    .modal-dialog{
+        width: 100vh;
+    }
+}
