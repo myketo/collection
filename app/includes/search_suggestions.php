@@ -64,11 +64,12 @@ function getCountriesSuggestions($search, $limit)
         array_push($data, $row['country']);
     }
 
+    $arr = [];
     for($i = 0; $i < count($data); $i++){
-        $data[$i] = $countries[$data[$i]];
+        $arr[$data[$i]] = $countries[$data[$i]];
     }
 
-    return $data;
+    return $arr;
 }
 
 echo findSuggestions($_POST['search'], $_POST['field']);

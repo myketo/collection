@@ -3,7 +3,7 @@
     include "../app/includes/queries/collection.php";
 ?>
 
-<link rel='stylesheet' href='styles/collection.css'></link>
+<link rel='stylesheet' href='styles/collection.css'>
 <div class="subpage collection-page d-flex flex-column">
     <h1 class='display-4 text-center caps-count mb-0'><?=countAllRows("", "", "", true)?></h1>
     <small class='text-center subtitle mb-5' style='font-size: 120%;'>unknown caps</small>

@@ -13,7 +13,7 @@ function pageInfo($caps_count, $limit = 10)
     }
 
     // calculate the amount of pages based on the limit per page
-    $count = ceil($caps_count / $limit);
+    $count = $caps_count <= $limit ? 1 : ceil($caps_count / $limit);
 
     // if set page doesnt exist then return
     if($page < 1 || $page > $count) return;
@@ -63,8 +63,8 @@ function filterUrlData($url = [])
     // check search query (if country isn't set)
     if(isset($url['search']) && !isset($url['country'])){
         // $url['search'] = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
-        include "../app/includes/connect.php";
-        $url['search'] = mysqli_escape_string($conn, $_GET['search']);
+        global $conn;
+        $url['search'] = mysqli_escape_string($conn, $url['search']);
         if(empty($url['search'])) headerLocation("collection");
 
         $path .= "search={$url['search']}";
@@ -79,7 +79,7 @@ function filterUrlData($url = [])
         }
 
         if(!isset($url['sort_by'])){
-            $data['sort_by'] = "brand";
+            $data['sort_by'] = $data['field'] == "country" ? "country" : "brand";
             $data['order_by'] = "asc";
         }
     }
@@ -276,6 +276,6 @@ function amountSubtitle($url)
 {
     $countries = include "../app/includes/countries_array.php";
     if(!empty($url['search'])) return "results found";
-    if(!empty($url['country'])) return "caps from {$countries[$url['country']]}";
+    if(!empty($url['country']) && isset($countries[$url['country']])) return "caps from {$countries[$url['country']]}";
     return "caps collected";
 }
