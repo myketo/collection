@@ -1,0 +1,28 @@
+table td.month-cell, 
+table th.arrow{
+    cursor: pointer;
+}
+
+table td.month-cell:hover, 
+table th.arrow:hover, 
+table td.month-cell.active{
+    background-color: rgba(0,0,0,.075);
+}
+
+table th.arrow{
+    font-size: 140%;
+}
+
+td, th{
+    font-size: 70%;
+}
+
+@media (min-width: 992px) {
+    table th.arrow{
+        font-size: 170%;
+    }
+
+    td, th{
+        font-size: 100%;
+    }
+}

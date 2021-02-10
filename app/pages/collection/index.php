@@ -1,7 +1,7 @@
 <?php
-include "../app/includes/functions/collection.php";
+// include "../app/includes/functions/collection.php";
 include "../app/includes/queries/collection.php";
-$url = filterUrlData($_GET);
+// $url = filterUrlData($_GET);
 
 $caps_count = countAllRows($url['search'], $url['field'], $url['country']);
 

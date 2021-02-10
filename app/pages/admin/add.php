@@ -40,11 +40,12 @@
         </div>
 
         <div class='form-group'>
-            <label for='newCountry'>Country</label>
+            <label for='newCountry'>Country </label>
+            <label for='disable_country' class='ml-3 small'> <input type='checkbox' id='disable_country'> unknown</label>
             <select name='country' class='form-control form-select' id='newCountry'>
             <?php
             foreach($countries as $country){
-                echo "<option value='",array_search($country, $countries),"'>$country</option>";
+                echo "<option value='",array_search($country, $countries),"' ",$country == "Poland" ? 'selected' : '',">$country</option>";
             }
             ?>
             </select>
@@ -76,3 +77,4 @@
 </div>
 
 <script src='scripts/image_preview.js'></script>
+<script src='scripts/disable_country.js'></script>

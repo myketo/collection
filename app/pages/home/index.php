@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="album py-5 bg-light">
+    <div class="album pt-5 bg-light">
         <div class="container">
             <h2 class='mb-4'>Recently added: </h2>
             <div class="row">

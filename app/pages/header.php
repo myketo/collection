@@ -42,6 +42,7 @@
                         <div class='dropdown-menu py-1'>
                             <a class='dropdown-item' href='admin/add'>Add new</a>
                             <a class='dropdown-item' href='admin/activity'>Activity</a>
+                            <a class='dropdown-item' href='logout'>Logout</a>
                         </div>
                     </div>" : "";?>
                     </li>
@@ -58,8 +59,8 @@
                         <!-- <option value='color'>Color</option> -->
                         <option value='country' <?=queryExists('field', 'country', 'selected')?>>Country</option>
                     </select>
-                    <div class='form-group search-container'>
-                        <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" value="<?=getQueryValue('search');?>">
+                    <div class='form-group search-container mr-2 my-2 my-sm-0'>
+                        <input class="form-control" type="search" name="search" placeholder="Search" value="<?=getQueryValue('search');?>">
                         <ul class="list-group search-suggestions">
                         </ul>
                     </div>

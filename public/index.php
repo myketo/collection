@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+date_default_timezone_set("Europe/Warsaw");
+
 require_once "../app/includes/connect.php";
 require_once '../app/includes/functions/app.php';
 
@@ -9,6 +11,9 @@ $url = parseUrl($get_url);
 $path = parsePath($url);
 
 logout($get_url);
+
+include "../app/includes/functions/collection.php";
+$url = filterUrlData($_GET);
 
 $page = $path['path'] . "/" . $path['dir'] . "/" . $path['file'];
 $subpage = !empty($path['subpage']) ? $path['path'] . "/" . $path['dir'] . "/" . $path['subpage'] : "";

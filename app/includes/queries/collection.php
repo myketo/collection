@@ -42,8 +42,11 @@ function countAllRows($search = "", $field = "", $country = "", $unknown = false
                     $i++;
                 }
             // for all the other fields just search using LIKE
+            }elseif($field == "id"){
+                // or $field is set as id
+                $query .= "`$field` = $search";
             }else{
-                $query .= "`$field` LIKE '$search%'";
+                $query .= "`$field` LIKE '%$search%'";
             }
         // if field is not set
         }else{
@@ -53,7 +56,7 @@ function countAllRows($search = "", $field = "", $country = "", $unknown = false
             // then search all the columns for the value
             $i = 1;
             foreach($columns as $column){
-                $query .= "`$column` LIKE '$search%'";
+                $query .= "`$column` LIKE '%$search%'";
                 $query .= $i != count($columns) ? " OR " : "";
                 $i++;
             }
@@ -114,9 +117,12 @@ function getItems($sort_by, $order_by, $limit, $offset, $search = "", $field = "
                     $query .= $i != count($search) ? " OR " : "";
                     $i++;
                 }
+            }elseif($field == "id"){
+                // or $field is set as id
+                $query .= "`$field` = $search";
             }else{
                 // for all of the other fields just search LIKE
-                $query .= "`$field` LIKE '$search%'";
+                $query .= "`$field` LIKE '%$search%'";
             }
         // if field is not set
         }else{
@@ -126,7 +132,7 @@ function getItems($sort_by, $order_by, $limit, $offset, $search = "", $field = "
             // then search all the columns for the search value
             $i = 1;
             foreach($columns as $column){
-                $query .= "`$column` LIKE '$search%'";
+                $query .= "`$column` LIKE '%$search%'";
                 $query .= $i != count($columns) ? " OR " : "";
                 $i++;
             }

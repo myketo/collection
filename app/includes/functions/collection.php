@@ -38,7 +38,7 @@ function filterUrlData($url = [])
 {
     // valid values for sort_by and order_by
     $valid_sort = ["brand", "text", "color", "country", "field"];
-    $valid_field = ["brand", "text", "color", "country"];
+    $valid_field = ["brand", "text", "color", "country", "id"];
     $valid_order = ["asc", "desc"];
 
     // setting default values
@@ -72,7 +72,8 @@ function filterUrlData($url = [])
 
         if(isset($url['field'])){
             $url['field'] = filter_input(INPUT_GET, 'field', FILTER_SANITIZE_STRING);
-            if(empty($url['field'])) headerLocation("collection?$path");
+            
+            if(empty($url['field']) || ($url['field'] == 'id' && !loggedIn())) headerLocation("collection?$path");
 
             $path .= "&field={$url['field']}";
             $data['field'] = in_array($url['field'], $valid_field) ? $url['field'] : "";
@@ -215,7 +216,7 @@ function showItem($item = [], $admin = false)
     }
     
     echo
-    "<div class='card'>
+    "<div class='card' style='border-radius: 0;'>
         <div class='row no-gutters d-flex flex-column align-items-center align-items-md-left flex-md-row'>
             <div class='col-auto m-1 py-1'>", 
             file_exists("media/caps/thumb/{$item['image']}.jpg") 
@@ -224,10 +225,9 @@ function showItem($item = [], $admin = false)
             ,"</div>
             <div class='col'>
                 <div class='card-body'>
-                    <div>
-                        <h4 class='card-header font-weight-bold mb-2'>",$item['unknown'] ? $item['unknown'] : $item['brand']," 
-                            <a class='details_link small collapsed float-right d-inline d-md-none' data-toggle='collapse' href='#details{$item['id']}' role='button' aria-expanded='false' aria-controls='Details'>Details &dArr;</a>
-                        </h4>
+                    <div class='text-center text-md-left'>
+                        <h4 class='card-header font-weight-bold mb-2'>",$item['unknown'] ? $item['unknown'] : $item['brand'],"</h4>
+                        <a class='details_link collapsed d-inline d-md-none' style='letter-spacing: 1px;' data-toggle='collapse' href='#details{$item['id']}' role='button' aria-expanded='false' aria-controls='Details'>Details &dArr;</a>
                     </div>
 
                     <div class='d-md-block collapse item-details' id='details{$item['id']}'>

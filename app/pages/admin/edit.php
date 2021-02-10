@@ -27,16 +27,17 @@
 
         <div class='form-group'>
             <label for='editColors'>Colors</label>
-            <input type='text' name='color' class='form-control' id='editColors' placeholder='eg. czar-biał-złot' value='<?=$item['color']?>' required>
+            <input type='text' name='color' class='form-control' id='editColors' placeholder='eg. czar-biał-złot' value='<?=$item['color']?>'>
         </div>
 
         <div class='form-group'>
-            <label for='newCountry'>Country</label>
+            <label for='newCountry'>Country </label>
+            <label for='disable_country' class='ml-3 small'> <input type='checkbox' id='disable_country'> unknown</label>
             <select name='country' class='form-control form-select' id='newCountry'>
             <?php
             foreach($countries as $country){
                 $index = array_search($country, $countries);
-                echo "<option value='$index' ",$item['country'] == $index ? 'selected' : '',">$country</option>";
+                echo "<option value='$index' ",$item['country'] == $index ? 'selected' : ($country == 'Poland' ? 'selected' : ''),">$country</option>";
             }
             ?>
             </select>
@@ -76,3 +77,4 @@
 
 <script src='scripts/confirm_delete.js'></script>
 <script src='scripts/image_preview.js'></script>
+<script src='scripts/disable_country.js'></script>

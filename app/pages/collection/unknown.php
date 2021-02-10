@@ -1,5 +1,5 @@
 <?php
-    include "../app/includes/functions/collection.php";
+    // include "../app/includes/functions/collection.php";
     include "../app/includes/queries/collection.php";
 ?>
 
