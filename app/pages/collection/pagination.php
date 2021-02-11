@@ -15,25 +15,27 @@
                 <?=$page_name['first']?>
             </a>
         </li>
+
         <li class="page-item page-nr">
             <a class="page-link" href="<?=$pagination['second']?>">
                 <?=$page_name['second']?>
             </a>
         </li>
-        <?php if($page['count'] > 2) echo 
+
+        <?= $page['count'] > 2 ?  
         "<li class='page-item page-nr'>
             <a class='page-link' href='{$pagination['third']}'>
                 {$page_name['third']}
             </a>
-        </li>";
+        </li>" : "";
         ?>
-
 
         <li class="page-item next-page">
             <a class="page-link" href="<?=$pagination['next']?>">
                 <span>&raquo;</span>
             </a>
         </li>
+        
         <li class="page-item last-page">
             <a class="page-link" href="<?=$pagination['last_page']?>">Last</a>
         </li>

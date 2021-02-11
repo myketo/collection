@@ -26,4 +26,4 @@
     </div>
 </div>
 
-<script src='scripts/scale_no_image.js'></script>
+<script src='scripts/min/scale_no_image.min.js'></script>

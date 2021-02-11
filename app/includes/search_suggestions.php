@@ -1,20 +1,22 @@
 <?php
 
+
 function findSuggestions($search, $field)
 {
     if(empty($search) || strlen($search) < 2) return;
-    if(empty($field)) $field = 'brand';
+
+    $field = empty($field) ? 'brand' : $field;
+    
     $suggestions = getSuggestions($search, $field);
     return json_encode($suggestions);
 }
+
 
 function getSuggestions($search, $field, $limit = 5)
 {
     include "connect.php";
 
-    if($field == "country"){
-        return getCountriesSuggestions($search, $limit);
-    }
+    if($field == "country") return getCountriesSuggestions($search, $limit);
 
     $search = "$search%";
 
@@ -23,17 +25,16 @@ function getSuggestions($search, $field, $limit = 5)
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $query);
     mysqli_stmt_bind_param($stmt, "si", $search, $limit);
-    mysqli_stmt_execute($stmt);
 
+    mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
     $data = [];
-    foreach($result as $row){
-        array_push($data, $row['brand']);
-    }
+    foreach($result as $row) array_push($data, $row['brand']);
 
     return $data;
 }
+
 
 function getCountriesSuggestions($search, $limit)
 {
@@ -71,5 +72,6 @@ function getCountriesSuggestions($search, $limit)
 
     return $arr;
 }
+
 
 echo findSuggestions($_POST['search'], $_POST['field']);

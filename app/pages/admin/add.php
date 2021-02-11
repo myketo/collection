@@ -2,7 +2,7 @@
     include "../app/includes/functions/admin.php";
     include "../app/includes/queries/admin.php";
 
-    if(!loggedIn()) headerLocation('..');
+    if(!loggedIn()) headerLocation('home');
 
     if(isset($_POST['submitAdd'])){
         unset($_POST['submitAdd']);
@@ -10,7 +10,7 @@
         $msg = "Please make sure to fill all the required fields.";
         $color = "danger";
 
-        if(($data = verifyCapData($_POST)) && addNewCap($data)){
+        if(($data = validateCapData($_POST)) && addNewCap($data)){
             $msg = "Successfully added a new cap to the collection!";
             $color = "success";
         }
@@ -23,6 +23,7 @@
 
 <div class='subpage add-new-page d-flex flex-column align-items-center'>
     <h1 class='text-center m-2'>Add new cap</h1>
+
     <form method='POST' enctype='multipart/form-data' class='col-md-7'>
         <div class='form-group'>
             <label for='newBrand'>Brand</label>
@@ -61,11 +62,6 @@
             <img id='imagePreview' alt='No image uploaded.' style='max-height: 130px;' class='mt-1'>
         </div>
 
-        <!-- <div class="custom-control custom-checkbox">
-            <input type="checkbox" name='unknown' class="custom-control-input" id="newUnknown">
-            <label class="custom-control-label" for="newUnknown">Unknown</label>
-        </div> -->
-
         <div class='form-group text-center'>
             <input type="submit" name='submitAdd' class="btn btn-primary col mt-4" value='Submit Add'>
         </div>
@@ -76,5 +72,5 @@
     </form>
 </div>
 
-<script src='scripts/image_preview.js'></script>
-<script src='scripts/disable_country.js'></script>
+<script src='scripts/min/image_preview.min.js'></script>
+<script src='scripts/min/disable_country.min.js'></script>

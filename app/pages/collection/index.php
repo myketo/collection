@@ -5,7 +5,7 @@ include "../app/includes/queries/collection.php";
 
 $caps_count = countAllRows($url['search'], $url['field'], $url['country']);
 
-$subtitle = amountSubtitle($url);
+$subtitle = subtitle($url);
 
 if(!$caps_count){
     $msg = "Sorry, no results found for '<i>{$url['search']}</i>'";
@@ -39,8 +39,8 @@ if(!$page = pageInfo($caps_count)) headerLocation("collection");
 
         if($page['count'] > 1) include "pagination.php";
     ?>
-
-    <script src='scripts/sorting.js'></script>
-    <script src='scripts/pagination.js'></script>
-    <script src='scripts/show_details.js'></script>
 </div>
+
+<script src='scripts/min/sorting.min.js'></script>
+<script src='scripts/min/pagination.min.js'></script>
+<script src='scripts/min/show_details.min.js'></script>

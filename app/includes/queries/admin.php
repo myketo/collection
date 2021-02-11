@@ -1,5 +1,6 @@
 <?php
 
+
 function addNewCap($data)
 {
     global $conn;
@@ -12,9 +13,11 @@ function addNewCap($data)
     return mysqli_stmt_execute($stmt);
 }
 
+
 function editCap($data)
 {
     global $conn;
+
     $query = "UPDATE `collection` SET `brand` = ?, `text` = ?, `country` = ?, `color` = ?, `image` = ?, `unknown` = ? WHERE `id` = ?;";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $query);
@@ -23,9 +26,11 @@ function editCap($data)
     return mysqli_stmt_execute($stmt);
 }
 
+
 function deleteCap($id)
 {
     global $conn;
+    
     $query = "DELETE FROM `collection` WHERE `id` = ?;";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $query);
@@ -34,9 +39,11 @@ function deleteCap($id)
     return mysqli_stmt_execute($stmt);
 }
 
+
 function deleteCapImage($id)
 {
     global $conn;
+
     $query = "UPDATE `collection` SET `image` = NULL WHERE `id` = ?;";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $query);
@@ -44,6 +51,7 @@ function deleteCapImage($id)
 
     return mysqli_stmt_execute($stmt);
 }
+
 
 function getItemById($id)
 {
@@ -53,12 +61,13 @@ function getItemById($id)
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $query);
     mysqli_stmt_bind_param($stmt, "i", $id);
-    mysqli_stmt_execute($stmt);
 
+    mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
     return mysqli_fetch_array($result);
 }
+
 
 function getRecentChanges($limit = 5)
 {
@@ -72,6 +81,7 @@ function getRecentChanges($limit = 5)
 
     return $dates;
 }
+
 
 function getActionsOnDate($date, $limit = 10)
 {

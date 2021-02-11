@@ -7,6 +7,6 @@
             </div>
         </footer>
         
-        <script src='scripts/navigation.js'></script>
+        <script src='scripts/min/navigation.min.js'></script>
     </body>
 </html>

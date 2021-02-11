@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * Return information about collection page
  * @param int $caps_count amount of caps used to calculate page_count and db query offset
@@ -29,6 +31,7 @@ function pageInfo($caps_count, $limit = 10)
     ];
 }
 
+
 /**
  * Function that analyzes and filters GET query data for Collection page
  * @param array $url array containing GET data
@@ -55,30 +58,35 @@ function filterUrlData($url = [])
     // check country query (if search isn't set)
     if(isset($url['country']) && !isset($url['search'])){
         $url['country'] = filter_input(INPUT_GET, 'country', FILTER_SANITIZE_STRING);
+
         if(empty($url['country'])) headerLocation('collection');
+
         $path .= "country={$url['country']}";
         $data['country'] = $url['country'];
     }
 
     // check search query (if country isn't set)
     if(isset($url['search']) && !isset($url['country'])){
-        // $url['search'] = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
         global $conn;
         $url['search'] = mysqli_escape_string($conn, $url['search']);
+
         if(empty($url['search'])) headerLocation("collection");
 
         $path .= "search={$url['search']}";
         $data['search'] = $url['search'];
 
+        // check field query
         if(isset($url['field'])){
             $url['field'] = filter_input(INPUT_GET, 'field', FILTER_SANITIZE_STRING);
             
+            // if field is empty or set to 'id' but admin isn't logged in then redirect
             if(empty($url['field']) || ($url['field'] == 'id' && !loggedIn())) headerLocation("collection?$path");
 
             $path .= "&field={$url['field']}";
             $data['field'] = in_array($url['field'], $valid_field) ? $url['field'] : "";
         }
 
+        // if searched by country field then set default sorting to country asc
         if(!isset($url['sort_by'])){
             $data['sort_by'] = $data['field'] == "country" ? "country" : "brand";
             $data['order_by'] = "asc";
@@ -93,6 +101,7 @@ function filterUrlData($url = [])
         $path .= (isset($url['country']) || isset($url['search'])) ? "&" : "";
         $path .= "sort_by={$url['sort_by']}&order_by={$url['order_by']}";
 
+        // check if chosen sort and order are valid fields
         $data['sort_by'] = in_array($url['sort_by'], $valid_sort) ? $url['sort_by'] : $data['sort_by'];
         $data['order_by'] = in_array($url['order_by'], $valid_order) ? $url['order_by'] : $data['order_by'];
     }
@@ -113,6 +122,7 @@ function filterUrlData($url = [])
     
     return $data;
 }
+
 
 /**
  * Set links for all pagination buttons
@@ -170,8 +180,9 @@ function paginationLinks($page = 1, $page_count, $query = "")
     ];
 }
 
+
 /**
- * Set values to display for  first, second and third center pagination buttons
+ * Set values to display for first, second and third center pagination buttons
  * @param int $page current page number
  * @param int $page_count amount of pages based on limit per page
  * @return array returns an array with values to display for three pagination buttons
@@ -198,6 +209,7 @@ function paginationNames($page = 1, $page_count)
         ];
     }
 }
+
 
 /**
  * Get information about a database item wrapped in html
@@ -267,15 +279,45 @@ function showItem($item = [], $admin = false)
     </div>";
 }
 
+
 /**
  * Generate text under results amount based on the query
  * @param array $url array containing GET data
  * @return string returns text to be shown as the subtitle
  */
-function amountSubtitle($url)
+function subtitle($url)
 {
+    // include the countries array
     $countries = include "../app/includes/countries_array.php";
+
+    // if search results were found
     if(!empty($url['search'])) return "results found";
+
+    // if country page is open
     if(!empty($url['country']) && isset($countries[$url['country']])) return "caps from {$countries[$url['country']]}";
+
+    // if collection page is open
     return "caps collected";
+}
+
+
+/**
+ * Search for similar country names and return their corresponding ISO names
+ * @param string $search country name or part of it to be searched for
+ * @return array array containing found countries ISO names
+ */
+function getCountryISO($search)
+{
+    // pull the countries array from a different file
+    $countries = include "../app/includes/countries_array.php";
+
+    // uppercase the first letter of the searched query
+    $input = ucwords($search);
+
+    // find all matching results
+    $input = preg_quote($input, '~');
+    $result = preg_grep("~$input~", $countries);
+
+    // if any results were found then return their ISOs, otherwise put search value in array
+    return count($result) ? array_keys($result) : [$search];
 }

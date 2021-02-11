@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Create a query that returns an amount of all the rows
  * @param string $search search data

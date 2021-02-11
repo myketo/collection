@@ -1,5 +1,6 @@
 <?php
 
+
 function getRecentlyAdded($amount = 9)
 {
     global $conn;

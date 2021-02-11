@@ -2,17 +2,18 @@
     include "../app/includes/functions/admin.php";
     include "../app/includes/queries/admin.php";
 
-    if(!loggedIn() || !isset($_GET['id'])) headerLocation('..');
+    if(!loggedIn() || !isset($_GET['id'])) headerLocation('home');
 
     $item = getItemById($_GET['id']);
-    if(!$item) headerLocation('..');
+    if(!$item) headerLocation('home');
 
-    $item = checkFormSubmits($_POST, $item);
+    $item = editPageFormSubmits($_POST, $item);
     $countries = include "../app/includes/countries_array.php";
 ?>
 
 <div class='subpage edit-page d-flex flex-column align-items-center'>
     <h1 class='text-center m-3'>Edit #<?=$item['id']?></h1>
+
     <form method='POST' enctype='multipart/form-data' class='col-md-7' id='editForm'>
         <input type='hidden' name='id' value='<?=$item['id']?>'>
         <div class='form-group'>
@@ -59,11 +60,6 @@
             </div>
         </div>
 
-        <!-- <div class="custom-control custom-checkbox">
-            <input type="checkbox" name='unknown' class="custom-control-input" id="newUnknown">
-            <label class="custom-control-label" for="newUnknown">Unknown</label>
-        </div> -->
-
         <div class='form-group text-center'>
             <input type="submit" name='submitEdit' class="btn btn-primary col mt-4" value='Submit Edit'>
         </div>
@@ -75,6 +71,6 @@
     </form>
 </div>
 
-<script src='scripts/confirm_delete.js'></script>
-<script src='scripts/image_preview.js'></script>
-<script src='scripts/disable_country.js'></script>
+<script src='scripts/min/confirm_delete.min.js'></script>
+<script src='scripts/min/image_preview.min.js'></script>
+<script src='scripts/min/disable_country.min.js'></script>

@@ -2,7 +2,7 @@
     include "../app/includes/functions/admin.php";
     include "../app/includes/queries/admin.php";
     
-    if(!loggedIn()) headerLocation(".");
+    if(!loggedIn()) headerLocation("home");
 
     $dates = recentDates();
     $actions = actionsOnDates($dates, 4);
@@ -11,6 +11,7 @@
 <link rel='stylesheet' href='styles/admin.css'>
 <div class='subpage admin-page'>
     <h1 class='display-4 text-center mb-2 mb-md-0'>Admin panel</h1>
+    
     <div class='links mx-2 p-lg-1 mb-4 d-flex'>
         <div>
             <a href='admin/add' class='btn btn btn-primary'>Add new cap</a>
@@ -30,6 +31,7 @@
                     foreach($actions[$i] as $item){
                         $item['updated_at'] = strtotime($item['updated_at']);
                         $item['created_at'] = strtotime($item['created_at']);
+
                         if($dates[$i] == date("Y-m-d", $item['updated_at'])){
                             echo "<li class='list-group-item list-group-item-warning'>Updated <i>{$item['brand']} (<a href='collection?field=id&search={$item['id']}'>#{$item['id']}</a>)</i></li>";
                         }
@@ -45,6 +47,7 @@
 
         <div class='search_by_id col col-lg-4 p-3'>
             <h1 class='mb-3'>Search by ID</h1>
+            
             <form method='GET' action='collection' class='form form-inline'>
                 <input type='hidden' name='field' value='id'>
                 <input type='number' name='search' min='1' required class='mr-1 form-control' placeholder='Search' style='width: 10rem;'>

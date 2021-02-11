@@ -2,6 +2,8 @@
     include "../app/includes/functions/admin.php";
     include "../app/includes/queries/admin.php";
 
+    if(!loggedIn()) headerLocation('home');
+
     $today = strtotime('now');
     $get_date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d', $today);
     
@@ -23,6 +25,7 @@
                 foreach($actions[$i] as $item){
                     $item['updated_at'] = strtotime($item['updated_at']);
                     $item['created_at'] = strtotime($item['created_at']);
+
                     if(strpos(date("Y-m-d", $item['updated_at']), $dates[$i]) !== false){
                         echo "<li class='list-group-item list-group-item-warning'>Updated <i>{$item['brand']} (<a href='collection?field=id&search={$item['id']}'>#{$item['id']}</a>)</i></li>";
                     }
@@ -31,6 +34,7 @@
                         echo "<li class='list-group-item list-group-item-success'>Added <i>{$item['brand']} (<a href='collection?field=id&search={$item['id']}'>#{$item['id']}</a>)</i></li>";
                     }
                 }
+
                 echo "</ul>";
             }
         ?>
@@ -42,4 +46,4 @@
     </div>
 </div>
 
-<script src='scripts/actions_amount.js'></script>
+<script src='scripts/min/actions_amount.min.js'></script>

@@ -1,7 +1,14 @@
 <?php
 
+
+/**
+ * Display a container with information about the cap
+ * @param array $item array containing information about the cap
+ * @param bool $admin determine if user is logged in or not
+ */
 function showRecentlyAdded($item = [], $admin = false)
 {
+    // include the countries array
     $countries = include "../app/includes/countries_array.php";
 
     // send message with cap id in title

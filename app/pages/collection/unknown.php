@@ -12,6 +12,6 @@
         $items = getItems("id", "asc", "1000", "0", "", "", "", true);
         foreach($items as $item) showItem($item, loggedIn());
     ?>
-
-    <script src='scripts/show_details.js'></script>
 </div>
+
+<script src='scripts/min/show_details.min.js'></script>
